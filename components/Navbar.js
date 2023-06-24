@@ -1,0 +1,272 @@
+import Link from "next/link";
+import useScrollPosition from '@/hooks/useScrollPosition';
+import { InformationCircleIcon } from "@heroicons/react/24/solid";
+import React, { useState, useContext } from "react";
+import {
+  Input,
+  Typography,
+  Tabs,
+} from "@material-tailwind/react";
+import {
+  CreditCardIcon,
+  LockClosedIcon,
+} from "@heroicons/react/24/solid";
+
+function formatCardNumber(value) {
+  const val = value.replace(/\s+/g, "").replace(/[^0-9]/gi, "");
+  const matches = val.match(/\d{4,16}/g);
+  const match = (matches && matches[0]) || "";
+  const parts = [];
+
+  for (let i = 0, len = match.length; i < len; i += 4) {
+    parts.push(match.substring(i, i + 4));
+  }
+
+  if (parts.length) {
+    return parts.join(" ");
+  } else {
+    return value;
+  }
+}
+
+function formatExpires(value) {
+  return value
+    .replace(/[^0-9]/g, "")
+    .replace(/^([2-9])$/g, "0$1")
+    .replace(/^(1{1})([3-9]{1})$/g, "0$1/$2")
+    .replace(/^0{1,}/g, "0")
+    .replace(/^([0-1]{1}[0-9]{1})([0-9]{1,2}).\*/g, "$1/$2");
+}
+
+const Navbar = () => {
+  function classNames(...classes) {
+    return classes.filter(Boolean).join(' ')
+  }
+
+  const scrollPosition = useScrollPosition()
+  const [type, setType] = React.useState("card");
+  const [cardNumber, setCardNumber] = React.useState("");
+  const [cardExpires, setCardExpires] = React.useState("");
+
+  const { open, loggedIn } = useContext(something);
+
+  return <div className={classNames("navbar", scrollPosition > 0 ? 'bg-white shadow' : 'bg-transparent', 'sticky top-0 z-20 transition-all')}>
+    <div className="navbar-start ml-4">
+      <div className="dropdown">
+        <label tabIndex={0} className="btn btn-ghost lg:hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+        </label>
+      </div>
+      <div className="logo w-[8vw]">
+        <img src="../logo.png" />
+      </div>
+    </div>
+    <div className="navbar-center hidden lg:flex font-aristotelica pt-2 ">
+      <ul className="menu menu-horizontal gap-16 px-1 text-xl">
+        <Link href="/">
+          <li className="ease-in duration-150 hover:text-[#C5996C]">Home</li>
+        </Link>
+        <Link href="/about">
+          <li className="ease-in duration-150 hover:text-[#C5996C]">About</li>
+        </Link>
+        <Link href="/cats">
+          <li className="ease-in duration-150 hover:text-[#C5996C]">Cats</li>
+        </Link>
+        <Link href="/purrmate">
+          <li className="ease-in duration-150 hover:text-[#C5996C]">Purrmate</li>
+        </Link>
+        <Link href="/adopt">
+          <li className="ease-in duration-150 hover:text-[#C5996C]">Adopt</li>
+        </Link>
+      </ul>
+    </div>
+
+    <div className="navbar-end font-aristotelica space-x-4 mr-4">
+      <div className="dropdown dropdown-end">
+        <label tabIndex={0} className="btn btn-ghost btn-circle">
+          <div className="indicator">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="#C5996C" stroke="none">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+        </label>
+
+        {/*start*/}
+        {/*
+        loggedIn ? (
+          <h1> test </h1>
+        ) : (
+          <h2> tset </h2>
+        )
+         */}
+        <div tabIndex={0} className="mt-3 card card-compact dropdown-content w-52 bg-white shadow-xl">
+          <div className="card-body">
+            <div className="card-actions">
+              <button className="bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-xl text-white font-gilroy btn-block rounded-md"
+                onClick={() => window.my_modal_1.showModal()}>Login</button>
+              <dialog id="my_modal_1" className="modal">
+                <form method="dialog" className="modal-box bg-white w-auto">
+                  <button className="btn btn-sm btn-circle btn-ghost absolute text-[#4B4B4B] right-2 top-3">✕</button>
+                  <div className="signin p-5">
+                    <div className="text-center">
+                      <h1 className="font-bold text-[#4B4B4B] font-gilroy text-4xl">Login</h1>
+                      <h2 className="font-gilroy text-[#4B4B4B] text-lg py-5">Sign in with your email and password</h2>
+                    </div>
+
+                    <div className="flex flex-col justify-center place-items-center space-y-5 pt-3 font-gilroy pb-10">
+                      <div className="w-full">
+                        <Input label="Email Address" />
+                      </div>
+                      <div className="w-full">
+                        <Input type="password" label="Password" />
+                      </div>
+                    </div>
+                    <Link href="/">
+                      <button className="grid h-11 w-80 bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white text-lg font-gilroy font-bold rounded-md place-content-center">
+                        Login
+                      </button>
+                    </Link>
+
+                  </div>
+                </form>
+              </dialog>
+
+              <button className="bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-xl text-white font-gilroy btn-block rounded-md"
+                onClick={() => window.my_modal_2.showModal()}>Register</button>
+              <dialog id="my_modal_2" className="modal">
+                <form method="dialog" className="modal-box bg-white w-auto">
+                  <button className="btn btn-sm btn-circle btn-ghost absolute text-[#4B4B4B] right-2 top-3">✕</button>
+                  <div className="signin p-5">
+                    <div className="text-center">
+                      <h1 className="font-bold text-[#4B4B4B] font-gilroy text-4xl">Sign up</h1>
+                      <h2 className="font-gilroy text-[#4B4B4B] text-lg py-5">Register and Create an Account</h2>
+                    </div>
+
+                    <div className="flex flex-col justify-center place-items-center space-y-5 font-gilroy">
+                      <Input size="lg" label="Name" />
+                      <Input size="lg" label="Email" />
+                      <Input type="password" size="lg" label="Password" />
+                      <Typography variant="small" color="gray" className="flex place-self-start gap-1 font-normal mt-2">
+                        <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                        Use at least 8 characters.
+                      </Typography>
+
+                      <Link href="/">
+                        <button className="grid h-11 w-[26rem] bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white text-lg font-gilroy font-bold rounded-md place-content-center">
+                          Register
+                        </button>
+                      </Link>
+                    </div>
+                  </div>
+                </form>
+              </dialog>
+            </div>
+          </div>
+        </div>
+        {/*end*/}
+        {/*user logged in*/}
+      </div>
+    </div>
+
+    <button className="bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white font-aristotelica font-bold text-xl w-44 h-8 pt-2 rounded-full place-content-center"
+      onClick={() => window.my_modal_3.showModal()}>Donate </button>
+    <dialog id="my_modal_3" className="modal">
+      <form method="dialog" className="modal-box bg-white w-auto">
+        <button className="btn btn-sm btn-circle btn-ghost absolute text-[#4B4B4B] right-2 top-3">✕</button>
+        <div className="signin p-5">
+          <div className="text-center">
+            <h1 className="font-bold text-[#4B4B4B] font-gilroy text-4xl">Donate</h1>
+            <h2 className="font-gilroy text-[#4B4B4B] text-lg py-5">Lomre lorem lorem lorem</h2>
+          </div>
+          <Tabs value={type} className="overflow-hidden">
+            <Tabs.Header className="relative z-0">
+              <Tabs.Tab value="card" className="font-gilroy" onClick={() => setType("card")}>
+                Card
+              </Tabs.Tab>
+              <Tabs.Tab value="paypal" className="font-gilroy" onClick={() => setType("paypal")}>
+                GCash
+              </Tabs.Tab>
+            </Tabs.Header>
+            <Tabs.Body
+              className="!overflow-x-hidden !overflow-y-hidden"
+              animate={{
+                initial: {
+                  x: type === "card" ? 400 : -400,
+                },
+                mount: {
+                  x: 0,
+                },
+                unmount: {
+                  x: type === "card" ? 400 : -400,
+                },
+              }}
+            >
+              <Tabs.Panel value="card" className="p-0">
+                <div className="pt-2 flex flex-col gap-4">
+                  <div className="font-gilroy">
+                    <label className="label">
+                      <span className="label-text">Personal Details</span>
+                    </label>
+                    <Input type="email" label="Email Address" />
+                  </div>
+
+                  <div className="pb-4 font-gilroy">
+                    <label className="label">
+                      <span className="label-text">Card Details</span>
+                    </label>
+
+                    <Input
+                      label="Card Number"
+                      maxLength={19}
+                      value={formatCardNumber(cardNumber)}
+                      onChange={(event) => setCardNumber(event.target.value)}
+                      icon={
+                        <CreditCardIcon className="h-5 w-5 text-blue-gray-300" />
+                      }
+                    />
+                    <div className="my-4 flex items-center gap-4">
+                      <Input
+                        label="Expires"
+                        maxLength={5}
+                        value={formatExpires(cardExpires)}
+                        onChange={(event) => setCardExpires(event.target.value)}
+                        containerClassName="min-w-[72px]"
+                      />
+                      <Input
+                        label="CVC"
+                        maxLength={4}
+                        containerClassName="min-w-[72px]"
+                      />
+                    </div>
+                    <Input label="Holder Name" />
+                  </div>
+                  <Link href="/">
+                    <button className="grid h-11 w-full bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white text-lg font-gilroy font-bold rounded-md place-content-center">
+                      Donate
+                    </button>
+                  </Link>
+                  <Typography
+                    variant="small"
+                    color="gray"
+                    className="mt-2 flex items-center justify-center gap-2 font-normal opacity-60"
+                  >
+                    <LockClosedIcon className="-mt-0.5 h-4 w-4" /> Payments are
+                    secure and encrypted
+                  </Typography>
+                </div>
+              </Tabs.Panel>
+              <Tabs.Panel value="paypal" className="p-0">
+                <div className="mt-6 flex flex-col gap-4">
+                  <img src="/donate.png" />
+                </div>
+              </Tabs.Panel>
+            </Tabs.Body>
+          </Tabs>
+        </div>
+      </form>
+    </dialog>
+  </div>
+};
+
+export default Navbar
