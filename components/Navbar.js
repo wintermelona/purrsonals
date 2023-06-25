@@ -2,6 +2,7 @@ import Link from "next/link";
 import useScrollPosition from '@/hooks/useScrollPosition';
 import { InformationCircleIcon } from "@heroicons/react/24/solid";
 import React, { useState, useContext } from "react";
+import {signIn, signOut, useSession} from 'next-auth/react';
 import {
   Input,
   Typography,
@@ -39,6 +40,15 @@ function formatExpires(value) {
 }
 
 const Navbar = () => {
+
+  // Get session data from NextAuth, see https://next-auth.js.org/getting-started/client#usesession
+  // Session has user object with {name, email...} 
+  // Can use status to check if a user is authenticated. Status can be {"authenticated", "unauthenticated"}
+  const {data: session, status} = useSession() // need to import this hook if the user session is required
+
+  console.log("session", session, "status ", status) // browser debugging, also renders server side for some reason
+
+
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
   }
@@ -48,8 +58,44 @@ const Navbar = () => {
   const [cardNumber, setCardNumber] = React.useState("");
   const [cardExpires, setCardExpires] = React.useState("");
 
-  const { open, loggedIn } = useContext(something);
+  const [name, setName] = React.useState("")
+  const [email, setEmail] = React.useState("")
+  const [password, setPassword] = React.useState("")
 
+  // const { open, loggedIn } = useContext(something);
+
+  const handleSignIn = async (e) => {
+    e.preventDefault()
+    const result = await signIn('credentials', {
+      email, password,
+      redirect: "/"
+    })
+    console.log("result ", result)
+  }
+
+  const handleRegister = async (e) => {
+    e.preventDefault()
+    
+    // This route returns a message object and status codes 201 and 400
+    const result = await fetch(`/api/user/register/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          password
+        }),
+      });
+      console.log(result)
+      const body = await result.json()
+      console.log(body)
+      alert(JSON.stringify(body.message))
+
+    }
+    
   return <div className={classNames("navbar", scrollPosition > 0 ? 'bg-white shadow' : 'bg-transparent', 'sticky top-0 z-20 transition-all')}>
     <div className="navbar-start ml-4">
       <div className="dropdown">
@@ -93,13 +139,13 @@ const Navbar = () => {
         </label>
 
         {/*start*/}
-        {/*
-        loggedIn ? (
-          <h1> test </h1>
+        
+        {status ===  "authenticated" ? (
+          <h1> {session.user.name} </h1>
         ) : (
-          <h2> tset </h2>
-        )
-         */}
+          <h2> Please log in </h2>
+        )}
+        
         <div tabIndex={0} className="mt-3 card card-compact dropdown-content w-52 bg-white shadow-xl">
           <div className="card-body">
             <div className="card-actions">
@@ -116,14 +162,16 @@ const Navbar = () => {
 
                     <div className="flex flex-col justify-center place-items-center space-y-5 pt-3 font-gilroy pb-10">
                       <div className="w-full">
-                        <Input label="Email Address" />
+                        <Input label="Email Address" value={email} onChange={(e) => setEmail(e.target.value)}/>
                       </div>
                       <div className="w-full">
-                        <Input type="password" label="Password" />
+                        <Input type="password" label="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
                       </div>
                     </div>
                     <Link href="/">
-                      <button className="grid h-11 w-80 bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white text-lg font-gilroy font-bold rounded-md place-content-center">
+                      <button className="grid h-11 w-80 bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white text-lg font-gilroy font-bold rounded-md place-content-center" 
+                      onClick={(e) => handleSignIn(e)}
+                      >
                         Login
                       </button>
                     </Link>
@@ -144,16 +192,20 @@ const Navbar = () => {
                     </div>
 
                     <div className="flex flex-col justify-center place-items-center space-y-5 font-gilroy">
-                      <Input size="lg" label="Name" />
-                      <Input size="lg" label="Email" />
-                      <Input type="password" size="lg" label="Password" />
+                      <Input size="lg" label="Name" value={name} onChange={(e) => setName(e.target.value)} />
+                      {/* Potentially problematic to use same email and password state for register and login inputs */}
+                      <Input size="lg" label="Email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                      <Input type="password" size="lg" label="Password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                       <Typography variant="small" color="gray" className="flex place-self-start gap-1 font-normal mt-2">
                         <InformationCircleIcon className="w-4 h-4 -mt-px" />
                         Use at least 8 characters.
                       </Typography>
 
                       <Link href="/">
-                        <button className="grid h-11 w-[26rem] bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white text-lg font-gilroy font-bold rounded-md place-content-center">
+                        <button className="grid h-11 w-[26rem] bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white text-lg font-gilroy font-bold rounded-md place-content-center"
+                        onClick={(e) => handleRegister(e)}
+                        
+                        >
                           Register
                         </button>
                       </Link>
