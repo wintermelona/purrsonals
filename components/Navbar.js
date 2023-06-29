@@ -58,7 +58,9 @@ const Navbar = () => {
   const [cardNumber, setCardNumber] = React.useState("");
   const [cardExpires, setCardExpires] = React.useState("");
 
-  //const { open, loggedIn } = useContext(something);
+  const [name, setName] = React.useState("")
+  const [email, setEmail] = React.useState("")
+  const [password, setPassword] = React.useState("")
 
   // const { open, loggedIn } = useContext(something);
 
