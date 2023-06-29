@@ -13,7 +13,7 @@ export default function About() {
             <Navbar />
             <div className="hero h-screen relative" style={{ backgroundImage: 'url(/h3.png)' }}>
                 <div className="text-center absolute inset-x-0 top-16">
-                    <h1 className="xl:text-7xl lg:text-6xl font-gilroy font-bold mb-6">
+                    <h1 className="text-6xl font-gilroy mb-6">
                         About <span className="text-[#C5996C]">Us</span>
                     </h1>
                     <p className="xl:text-2xl lg:text-xl">Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br />
@@ -27,7 +27,7 @@ export default function About() {
                     <img src="/c1.png" className="max-w-sm rounded-3xl shadow-2xl" />
                     <div className="ml-20">
                         <h3 className="text-xl font-thin text-[#a3a3a1] pb-5">WHAT'S OUR DRIVE?</h3>
-                        <h1 className="text-5xl font-bold">Inspiration by
+                        <h1 className="text-5xl font-gilroy">Inspiration by
                             <span className="text-[#C5996C]"> love:</span> <br />
                             <span className="text-[#C5996C]">Transform</span> stay cats lives</h1>
                         <p className="py-6 text-xl">Our inspiration comes from the countless stray cats who are seeking love, care,
@@ -41,7 +41,7 @@ export default function About() {
             {/* CATS W ADOPTER */}
             <div className="hero-[60vh] mb-18">
                 <div className="content rounded-3xl w-[71rem] h-[29rem] mx-auto flex flex-col justify-center items-center my-10">
-                    <h1 className="text-5xl font-bold text-center">
+                    <h1 className="text-5xl font-gilroy text-center">
                         Adopting is not only a <span className="text-[#C5996C]">life-changing</span> decision, <br />
                         but also a  <span className="text-[#C5996C]">deeply rewarding</span> experience.
                     </h1>
@@ -85,7 +85,7 @@ export default function About() {
                 <div className="hero-content bg-[#f0f7ed] rounded-3xl w-[75rem] h-[38rem] flex justify-between m-20 p-20">
                     <div className="m-50">
                         <h3 className="text-xl font-thin text-[#a3a3a1] pb-5">WHY US?</h3>
-                        <h1 className="text-5xl font-bold">Find your <span className="text-[#C5996C]">match</span> here <br />
+                        <h1 className="text-5xl font-gilroy">Find your <span className="text-[#C5996C]">match</span> here <br />
                             at Purrsonals</h1>
                         <p className="py-6 text-xl text-[#78818a]">We've created a user-friendly platform that makes <br />
                             it easy for potential adopters to browse through <br />
@@ -111,46 +111,46 @@ export default function About() {
             <div className="hero h-[70vh] mb-14">
                 <div className="content flex flex-col justify-center items-center">
                     <h3 className="text-xl text-[#a3a3a1] text-center pb-5">HOW DO WE DO IT?</h3>
-                    <h1 className="text-5xl font-bold text-center">
+                    <h1 className="text-5xl font-gilroy text-center">
                         The Journey to <span className="text-[#C5996C]">Forever</span> Homes.
                     </h1>
                     <div className="flex w-[75rem] h-64 pt-10 space-x-16 justify-center items-center">
                         <div className="flex flex-col w-40 border-opacity-50 space-y-5">
-                            <div className="grid w-20 h-20 bg-[#FEF3E4] text-[#C5996C] text-2xl font-bold rounded-full place-items-center">01</div>
+                            <div className="grid w-20 h-20 bg-[#FEF3E4] text-[#C5996C] text-2xl font-gilroy rounded-full place-items-center">01</div>
                             <div className="grid h-20">
-                                <h1 className="text-xl font-bold pb-2">Title 01</h1>
+                                <h1 className="text-xl font-gilroy pb-2">Title 01</h1>
                                 <p className="text-md w-44">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                             </div>
                         </div>
 
                         <div className="flex flex-col w-40 border-opacity-50 space-y-5">
-                            <div className="grid w-20 h-20 bg-[#FEF3E4] text-[#C5996C] text-2xl font-bold rounded-full place-items-center">02</div>
+                            <div className="grid w-20 h-20 bg-[#FEF3E4] text-[#C5996C] text-2xl font-gilroy rounded-full place-items-center">02</div>
                             <div className="grid h-20">
-                                <h1 className="text-xl font-bold pb-2">Title 02</h1>
+                                <h1 className="text-xl font-gilroy pb-2">Title 02</h1>
                                 <p className="text-md w-44">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                             </div>
                         </div>
 
                         <div className="flex flex-col w-40 border-opacity-50 space-y-5">
-                            <div className="grid w-20 h-20 bg-[#FEF3E4] text-[#C5996C] text-2xl font-bold rounded-full place-items-center">03</div>
+                            <div className="grid w-20 h-20 bg-[#FEF3E4] text-[#C5996C] text-2xl font-gilroy rounded-full place-items-center">03</div>
                             <div className="grid h-20">
-                                <h1 className="text-xl font-bold pb-2">Title 03</h1>
+                                <h1 className="text-xl font-gilroy pb-2">Title 03</h1>
                                 <p className="text-md w-44">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                             </div>
                         </div>
 
                         <div className="flex flex-col w-40 border-opacity-50 space-y-5">
-                            <div className="grid w-20 h-20 bg-[#FEF3E4] text-[#C5996C] text-2xl font-bold rounded-full place-items-center">04</div>
+                            <div className="grid w-20 h-20 bg-[#FEF3E4] text-[#C5996C] text-2xl font-gilroy rounded-full place-items-center">04</div>
                             <div className="grid h-20">
-                                <h1 className="text-xl font-bold pb-2">Title 04</h1>
+                                <h1 className="text-xl font-gilroy pb-2">Title 04</h1>
                                 <p className="text-md w-44">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                             </div>
                         </div>
 
                         <div className="flex flex-col w-40 border-opacity-50 space-y-5">
-                            <div className="grid w-20 h-20 bg-[#FEF3E4] text-[#C5996C] text-2xl font-bold rounded-full place-items-center">05</div>
+                            <div className="grid w-20 h-20 bg-[#FEF3E4] text-[#C5996C] text-2xl font-gilroy rounded-full place-items-center">05</div>
                             <div className="grid h-20">
-                                <h1 className="text-xl font-bold pb-2">Title 05</h1>
+                                <h1 className="text-xl font-gilroy pb-2">Title 05</h1>
                                 <p className="text-md w-44">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                             </div>
                         </div>
@@ -164,7 +164,7 @@ export default function About() {
                     <img src="/c1.png" className="max-w-sm rounded-3xl shadow-2xl" />
                     <div className="ml-20">
                         <h3 className="text-xl font-thin text-[#a3a3a1] pb-5">NOTE FROM US</h3>
-                        <h1 className="text-5xl font-bold">Make a
+                        <h1 className="text-5xl font-gilroy">Make a
                             <span className="text-[#C5996C]"> difference,</span> one<br />
                             <span className="text-[#C5996C]">person</span> at a time.</h1>
                         <p className="py-6 text-xl">You're not only saving a life but also becoming part

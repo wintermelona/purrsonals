@@ -16,7 +16,7 @@ export default function Cats() {
                 <div class="relative w-full h-[70%]">
                     <div class="absolute top-0 right-0 h-96 w-[48%]">
                         <div class="w-2/3">
-                            <h1 className="xl:text-7xl lg:text-6xl font-gilroy font-bold">
+                            <h1 className="xl:text-7xl lg:text-6xl font-gilroy">
                                 <span className="text-[#C5996C]">Meet</span> the Cats
                             </h1>
                             <h2 className="py-6 xl:text-2xl lg:text-xl">
@@ -25,11 +25,11 @@ export default function Cats() {
                         </div>
                         <div className="flex text-center space-x-12">
                             <div className="c1 w-32 h-32 rounded-3xl bg-white flex flex-col justify-center items-center" style={{ boxShadow: '0px 0px 8px 4px rgba(0, 0, 0, 0.08)' }}>
-                                <h1 className="mb-2 text-[#C5996C] text-5xl font-bold">XX</h1>
+                                <h1 className="mb-2 text-[#C5996C] text-5xl font-gilroy">XX</h1>
                                 <p className="text-xl">Male</p>
                             </div>
                             <div className="c2 w-32 h-32 rounded-3xl bg-white flex flex-col justify-center items-center" style={{ boxShadow: '0px 0px 8px 4px rgba(0, 0, 0, 0.08)' }}>
-                                <h5 className="mb-2 text-[#C5996C] text-5xl font-bold tracking-tight">XX</h5>
+                                <h5 className="mb-2 text-[#C5996C] text-5xl font-gilroy tracking-tight">XX</h5>
                                 <p className="text-xl">Female</p>
                             </div>
                         </div>
@@ -48,9 +48,9 @@ export default function Cats() {
                             <div className="relative p-10">
                                 <div className="transition-all transform translate-y-8 opacity-0 group-hover:opacity-100 group-hover:translate-y-0">
                                     <p className="text-md text-white text-justify pb-3">
-                                        <span className="font-bold">Name: </span>name <br />
-                                        <span className="font-bold">Age: </span>name <br />
-                                        <span className="font-bold">Sex: </span>name <br />
+                                        <span className="font-gilroy">Name: </span>name <br />
+                                        <span className="font-gilroy">Age: </span>name <br />
+                                        <span className="font-gilroy">Sex: </span>name <br />
                                     </p>
                                     <hr />
                                     <p className="text-md text-white text-justify py-3">
@@ -58,7 +58,7 @@ export default function Cats() {
                                         semper eget sem. Sed rutrum, lacus et consequat rutrum, libero nisl tristique nunc, quis dictum odio neque
                                         sit amet orci</p>
                                     <Link href="/adopt">
-                                        <button className="w-full h-10 bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white font-bold rounded-full">Adopt Now</button>
+                                        <button className="w-full h-10 bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white font-gilroy rounded-full">Adopt Now</button>
                                     </Link>
                                 </div>
                             </div>
@@ -70,9 +70,9 @@ export default function Cats() {
                             <div className="relative p-10">
                                 <div className="transition-all transform translate-y-8 opacity-0 group-hover:opacity-100 group-hover:translate-y-0">
                                     <p className="text-md text-white text-justify pb-3">
-                                        <span className="font-bold">Name: </span>name <br />
-                                        <span className="font-bold">Age: </span>name <br />
-                                        <span className="font-bold">Sex: </span>name <br />
+                                        <span className="font-gilroy">Name: </span>name <br />
+                                        <span className="font-gilroy">Age: </span>name <br />
+                                        <span className="font-gilroy">Sex: </span>name <br />
                                     </p>
                                     <hr />
                                     <p className="text-md text-white text-justify py-3">
@@ -80,7 +80,7 @@ export default function Cats() {
                                         semper eget sem. Sed rutrum, lacus et consequat rutrum, libero nisl tristique nunc, quis dictum odio neque
                                         sit amet orci</p>
                                     <Link href="/adopt">
-                                        <button className="w-full h-10 bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white font-bold rounded-full">Adopt Now</button>
+                                        <button className="w-full h-10 bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white font-gilroy rounded-full">Adopt Now</button>
                                     </Link>
                                 </div>
                             </div>
@@ -92,9 +92,9 @@ export default function Cats() {
                             <div className="relative p-10">
                                 <div className="transition-all transform translate-y-8 opacity-0 group-hover:opacity-100 group-hover:translate-y-0">
                                     <p className="text-md text-white text-justify pb-3">
-                                        <span className="font-bold">Name: </span>name <br />
-                                        <span className="font-bold">Age: </span>name <br />
-                                        <span className="font-bold">Sex: </span>name <br />
+                                        <span className="font-gilroy">Name: </span>name <br />
+                                        <span className="font-gilroy">Age: </span>name <br />
+                                        <span className="font-gilroy">Sex: </span>name <br />
                                     </p>
                                     <hr />
                                     <p className="text-md text-white text-justify py-3">
@@ -102,7 +102,7 @@ export default function Cats() {
                                         semper eget sem. Sed rutrum, lacus et consequat rutrum, libero nisl tristique nunc, quis dictum odio neque
                                         sit amet orci</p>
                                     <Link href="/adopt">
-                                        <button className="w-full h-10 bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white font-bold rounded-full">Adopt Now</button>
+                                        <button className="w-full h-10 bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white font-gilroy rounded-full">Adopt Now</button>
                                     </Link>
                                 </div>
                             </div>
@@ -121,9 +121,9 @@ export default function Cats() {
                             <div className="relative p-10">
                                 <div className="transition-all transform translate-y-8 opacity-0 group-hover:opacity-100 group-hover:translate-y-0">
                                     <p className="text-md text-white text-justify pb-3">
-                                        <span className="font-bold">Name: </span>name <br />
-                                        <span className="font-bold">Age: </span>name <br />
-                                        <span className="font-bold">Sex: </span>name <br />
+                                        <span className="font-gilroy">Name: </span>name <br />
+                                        <span className="font-gilroy">Age: </span>name <br />
+                                        <span className="font-gilroy">Sex: </span>name <br />
                                     </p>
                                     <hr />
                                     <p className="text-md text-white text-justify py-3">
@@ -131,7 +131,7 @@ export default function Cats() {
                                         semper eget sem. Sed rutrum, lacus et consequat rutrum, libero nisl tristique nunc, quis dictum odio neque
                                         sit amet orci</p>
                                     <Link href="/adopt">
-                                        <button className="w-full h-10 bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white font-bold rounded-full">Adopt Now</button>
+                                        <button className="w-full h-10 bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white font-gilroy rounded-full">Adopt Now</button>
                                     </Link>
                                 </div>
                             </div>
@@ -143,9 +143,9 @@ export default function Cats() {
                             <div className="relative p-10">
                                 <div className="transition-all transform translate-y-8 opacity-0 group-hover:opacity-100 group-hover:translate-y-0">
                                     <p className="text-md text-white text-justify pb-3">
-                                        <span className="font-bold">Name: </span>name <br />
-                                        <span className="font-bold">Age: </span>name <br />
-                                        <span className="font-bold">Sex: </span>name <br />
+                                        <span className="font-gilroy">Name: </span>name <br />
+                                        <span className="font-gilroy">Age: </span>name <br />
+                                        <span className="font-gilroy">Sex: </span>name <br />
                                     </p>
                                     <hr />
                                     <p className="text-md text-white text-justify py-3">
@@ -153,7 +153,7 @@ export default function Cats() {
                                         semper eget sem. Sed rutrum, lacus et consequat rutrum, libero nisl tristique nunc, quis dictum odio neque
                                         sit amet orci</p>
                                     <Link href="/adopt">
-                                        <button className="w-full h-10 bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white font-bold rounded-full">Adopt Now</button>
+                                        <button className="w-full h-10 bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white font-gilroy rounded-full">Adopt Now</button>
                                     </Link>
                                 </div>
                             </div>
@@ -165,9 +165,9 @@ export default function Cats() {
                             <div className="relative p-10">
                                 <div className="transition-all transform translate-y-8 opacity-0 group-hover:opacity-100 group-hover:translate-y-0">
                                     <p className="text-md text-white text-justify pb-3">
-                                        <span className="font-bold">Name: </span>name <br />
-                                        <span className="font-bold">Age: </span>name <br />
-                                        <span className="font-bold">Sex: </span>name <br />
+                                        <span className="font-gilroy">Name: </span>name <br />
+                                        <span className="font-gilroy">Age: </span>name <br />
+                                        <span className="font-gilroy">Sex: </span>name <br />
                                     </p>
                                     <hr />
                                     <p className="text-md text-white text-justify py-3">
@@ -175,7 +175,7 @@ export default function Cats() {
                                         semper eget sem. Sed rutrum, lacus et consequat rutrum, libero nisl tristique nunc, quis dictum odio neque
                                         sit amet orci</p>
                                     <Link href="/adopt">
-                                        <button className="w-full h-10 bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white font-bold rounded-full">Adopt Now</button>
+                                        <button className="w-full h-10 bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white font-gilroy rounded-full">Adopt Now</button>
                                     </Link>
                                 </div>
                             </div>
@@ -193,9 +193,9 @@ export default function Cats() {
                             <div className="relative p-10">
                                 <div className="transition-all transform translate-y-8 opacity-0 group-hover:opacity-100 group-hover:translate-y-0">
                                     <p className="text-md text-white text-justify pb-3">
-                                        <span className="font-bold">Name: </span>name <br />
-                                        <span className="font-bold">Age: </span>name <br />
-                                        <span className="font-bold">Sex: </span>name <br />
+                                        <span className="font-gilroy">Name: </span>name <br />
+                                        <span className="font-gilroy">Age: </span>name <br />
+                                        <span className="font-gilroy">Sex: </span>name <br />
                                     </p>
                                     <hr />
                                     <p className="text-md text-white text-justify py-3">
@@ -203,7 +203,7 @@ export default function Cats() {
                                         semper eget sem. Sed rutrum, lacus et consequat rutrum, libero nisl tristique nunc, quis dictum odio neque
                                         sit amet orci</p>
                                     <Link href="/adopt">
-                                        <button className="w-full h-10 bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white font-bold rounded-full">Adopt Now</button>
+                                        <button className="w-full h-10 bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white font-gilroy rounded-full">Adopt Now</button>
                                     </Link>
                                 </div>
                             </div>
@@ -214,9 +214,9 @@ export default function Cats() {
                             <div className="relative p-10">
                                 <div className="transition-all transform translate-y-8 opacity-0 group-hover:opacity-100 group-hover:translate-y-0">
                                     <p className="text-md text-white text-justify pb-3">
-                                        <span className="font-bold">Name: </span>name <br />
-                                        <span className="font-bold">Age: </span>name <br />
-                                        <span className="font-bold">Sex: </span>name <br />
+                                        <span className="font-gilroy">Name: </span>name <br />
+                                        <span className="font-gilroy">Age: </span>name <br />
+                                        <span className="font-gilroy">Sex: </span>name <br />
                                     </p>
                                     <hr />
                                     <p className="text-md text-white text-justify py-3">
@@ -224,7 +224,7 @@ export default function Cats() {
                                         semper eget sem. Sed rutrum, lacus et consequat rutrum, libero nisl tristique nunc, quis dictum odio neque
                                         sit amet orci</p>
                                     <Link href="/adopt">
-                                        <button className="w-full h-10 bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white font-bold rounded-full">Adopt Now</button>
+                                        <button className="w-full h-10 bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white font-gilroy rounded-full">Adopt Now</button>
                                     </Link>
                                 </div>
                             </div>
@@ -235,9 +235,9 @@ export default function Cats() {
                             <div className="relative p-10">
                                 <div className="transition-all transform translate-y-8 opacity-0 group-hover:opacity-100 group-hover:translate-y-0">
                                     <p className="text-md text-white text-justify pb-3">
-                                        <span className="font-bold">Name: </span>name <br />
-                                        <span className="font-bold">Age: </span>name <br />
-                                        <span className="font-bold">Sex: </span>name <br />
+                                        <span className="font-gilroy">Name: </span>name <br />
+                                        <span className="font-gilroy">Age: </span>name <br />
+                                        <span className="font-gilroy">Sex: </span>name <br />
                                     </p>
                                     <hr />
                                     <p className="text-md text-white text-justify py-3">
@@ -245,7 +245,7 @@ export default function Cats() {
                                         semper eget sem. Sed rutrum, lacus et consequat rutrum, libero nisl tristique nunc, quis dictum odio neque
                                         sit amet orci</p>
                                     <Link href="/adopt">
-                                        <button className="w-full h-10 bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white font-bold rounded-full">Adopt Now</button>
+                                        <button className="w-full h-10 bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white font-gilroy rounded-full">Adopt Now</button>
                                     </Link>
                                 </div>
                             </div>

@@ -58,9 +58,7 @@ const Navbar = () => {
   const [cardNumber, setCardNumber] = React.useState("");
   const [cardExpires, setCardExpires] = React.useState("");
 
-  const [name, setName] = React.useState("")
-  const [email, setEmail] = React.useState("")
-  const [password, setPassword] = React.useState("")
+  //const { open, loggedIn } = useContext(something);
 
   // const { open, loggedIn } = useContext(something);
 
@@ -157,10 +155,10 @@ const Navbar = () => {
                   <div className="signin p-5">
                     <div className="text-center">
                       <h1 className="font-bold text-[#4B4B4B] font-gilroy text-4xl">Login</h1>
-                      <h2 className="font-gilroy text-[#4B4B4B] text-lg py-5">Sign in with your email and password</h2>
+                      <h2 className="font-gilroyLight text-[#4B4B4B] text-lg py-5">Sign in with your email and password</h2>
                     </div>
 
-                    <div className="flex flex-col justify-center place-items-center space-y-5 pt-3 font-gilroy pb-10">
+                    <div className="flex flex-col justify-center place-items-center space-y-5 pt-3 font-gilroyLight pb-10">
                       <div className="w-full">
                         <Input label="Email Address" value={email} onChange={(e) => setEmail(e.target.value)}/>
                       </div>
@@ -187,8 +185,8 @@ const Navbar = () => {
                   <button className="btn btn-sm btn-circle btn-ghost absolute text-[#4B4B4B] right-2 top-3">✕</button>
                   <div className="signin p-5">
                     <div className="text-center">
-                      <h1 className="font-bold text-[#4B4B4B] font-gilroy text-4xl">Sign up</h1>
-                      <h2 className="font-gilroy text-[#4B4B4B] text-lg py-5">Register and Create an Account</h2>
+                      <h1 className="font-gilroy text-[#4B4B4B] text-4xl">Sign up</h1>
+                      <h2 className="font-gilroyLight text-[#4B4B4B] text-lg py-5">Register and Create an Account</h2>
                     </div>
 
                     <div className="flex flex-col justify-center place-items-center space-y-5 font-gilroy">
@@ -229,14 +227,14 @@ const Navbar = () => {
         <div className="signin p-5">
           <div className="text-center">
             <h1 className="font-bold text-[#4B4B4B] font-gilroy text-4xl">Donate</h1>
-            <h2 className="font-gilroy text-[#4B4B4B] text-lg py-5">Lomre lorem lorem lorem</h2>
+            <h2 className="font-gilroyLight text-[#4B4B4B] text-lg py-5">Lomre lorem lorem lorem</h2>
           </div>
           <Tabs value={type} className="overflow-hidden">
             <Tabs.Header className="relative z-0">
-              <Tabs.Tab value="card" className="font-gilroy" onClick={() => setType("card")}>
+              <Tabs.Tab value="card" className="font-gilroyLight" onClick={() => setType("card")}>
                 Card
               </Tabs.Tab>
-              <Tabs.Tab value="paypal" className="font-gilroy" onClick={() => setType("paypal")}>
+              <Tabs.Tab value="paypal" className="font-gilroyLight" onClick={() => setType("paypal")}>
                 GCash
               </Tabs.Tab>
             </Tabs.Header>
@@ -256,14 +254,14 @@ const Navbar = () => {
             >
               <Tabs.Panel value="card" className="p-0">
                 <div className="pt-2 flex flex-col gap-4">
-                  <div className="font-gilroy">
+                  <div className="font-gilroyLight">
                     <label className="label">
                       <span className="label-text">Personal Details</span>
                     </label>
                     <Input type="email" label="Email Address" />
                   </div>
 
-                  <div className="pb-4 font-gilroy">
+                  <div className="pb-4 font-gilroyLight">
                     <label className="label">
                       <span className="label-text">Card Details</span>
                     </label>
