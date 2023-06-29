@@ -11,15 +11,13 @@ module.exports = withMT({
     "path-to-your-node_modules/@material-tailwind/react/theme/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    screens: {
-      'xl': "1280px",
-      '2xl': "1536px",
-    },
     extend: {
       fontFamily: {
-        'gilroy': ['Gilroy', 'sans-serif'],
+        'gilroy': ['gilroyBold', 'sans-serif'],
+        'gilroyLight': ['gilroyLight', 'sans-serif'],
         'aristotelica': ['Aristotelica', 'sans-serif']
       }
+      
     }
   },
   plugins: [require("daisyui")],

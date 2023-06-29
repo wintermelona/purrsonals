@@ -16,8 +16,8 @@ export default function Adopt() {
 
             <div className="hero min-h-screen flex relative" style={{ backgroundImage: 'url(/h5.png)' }}>
                 <div className="header flex-1">
-                    <div className="content-left xl:pl-[12rem] lg:pl-[8rem] xl:pb-[24rem] lg:pb-[20rem] w-[50rem]">
-                        <h1 className="xl:text-7xl lg:text-6xl font-gilroy font-bold">
+                    <div className="content-left  pl-28 pb-60 w-[50rem]">
+                        <h1 className="text-6xl font-gilroy">
                             Found the <span className="text-[#C5996C]">one</span> <br />
                             for <span className="text-[#C5996C]">you?</span>
                         </h1>
@@ -31,7 +31,7 @@ export default function Adopt() {
             <div className="hero-min-[70vh] pt-10 pb-20">
                 <div className="content w-full justify-center items-center mx-auto flex flex-col py-10">
                     <h3 className="text-xl font-thin text-[#a3a3a1] text-center pb-5">APPLICATION</h3>
-                    <h1 className="text-5xl font-bold text-center">
+                    <h1 className="text-5xl font-gilroy text-center">
                         <span className="text-[#C5996C]">Fill</span> up the form and<br />
                         <span className="text-[#C5996C]">submit</span> it to us
                     </h1>
@@ -132,7 +132,7 @@ export default function Adopt() {
                                 </div>
                             </div>
                         </div>
-                        <button className="bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white font-bold px-12 py-3 rounded-full">
+                        <button className="bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white font-gilroy px-12 py-3 rounded-full">
                             Submit
                         </button>
                     </div>
