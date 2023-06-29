@@ -21,7 +21,7 @@ export default function Purrmate() {
                     </div>
                     <div className="grid w-60 place-items-center">
                         <div className="recommender-content">
-
+                            
                         </div>
                     </div>
                 </div>
