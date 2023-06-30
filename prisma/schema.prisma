@@ -75,11 +75,12 @@ model Cat {
   userId        String?
   name          String
   sex           String
+  age           String?   @default("1")
   image         String?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   owner         User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  @@unique([id])
+  @@unique([id])  
   @@index([userId])
 
 }

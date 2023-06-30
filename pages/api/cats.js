@@ -5,14 +5,16 @@ import prisma from '/lib/db';
 
 export default async function handler(req, res) {
     const { method } = req
-
+    console.log("METHOD ", method)
     if(method === "GET") {
         const result = await prisma.cat.findMany()
-        console.log(result)
-        res.status(400).json(await result)
+        const cats = await result
+        // console.log("cats ", cats)
+        res.status(400).json(cats)
     }
 
     if(method === "POST") {
+        // Create cats??
         res.send("POST /cats")
     }
 
@@ -25,6 +27,6 @@ export default async function handler(req, res) {
         res.send("DELETE /cats")
     }
 
-    res.send("hello")
+    // res.send("hello")
     
 };

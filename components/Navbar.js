@@ -70,7 +70,7 @@ const Navbar = () => {
       email, password,
       redirect: "/"
     })
-    console.log("result ", result)
+    // console.log("result ", result)
   }
 
   const handleRegister = async (e) => {
@@ -89,9 +89,9 @@ const Navbar = () => {
           password
         }),
       });
-      console.log(result)
+      // console.log(result)
       const body = await result.json()
-      console.log(body)
+      // console.log(body)
       alert(JSON.stringify(body.message))
 
     }
@@ -139,7 +139,7 @@ const Navbar = () => {
         </label>
 
         {/*start*/}
-        
+        {/* Based doon sa testing stuff na nakalagay dito initially */}
         {status ===  "authenticated" ? (
           <h1> {session.user.name} </h1>
         ) : (
@@ -149,70 +149,82 @@ const Navbar = () => {
         <div tabIndex={0} className="mt-3 card card-compact dropdown-content w-52 bg-white shadow-xl">
           <div className="card-body">
             <div className="card-actions">
-              <button className="bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-xl text-white font-gilroy btn-block rounded-md"
-                onClick={() => window.my_modal_1.showModal()}>Login</button>
-              <dialog id="my_modal_1" className="modal">
-                <form method="dialog" className="modal-box bg-white w-auto">
-                  <button className="btn btn-sm btn-circle btn-ghost absolute text-[#4B4B4B] right-2 top-3">✕</button>
-                  <div className="signin p-5">
-                    <div className="text-center">
-                      <h1 className="font-bold text-[#4B4B4B] font-gilroy text-4xl">Login</h1>
-                      <h2 className="font-gilroyLight text-[#4B4B4B] text-lg py-5">Sign in with your email and password</h2>
-                    </div>
+              {/* Show logout button if authenticated */}
+              {
+                status === "authenticated" ? (<>
+                
+                <button className="bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-xl text-white font-gilroy btn-block rounded-md"
+                onClick={signOut}>Logout</button>
+                </>) 
+                :
+                (
+                  <>
+                  <button className="bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-xl text-white font-gilroy btn-block rounded-md"
+                    onClick={() => window.my_modal_1.showModal()}>Login</button>
+                    <dialog id="my_modal_1" className="modal">
+                      <form method="dialog" className="modal-box bg-white w-auto">
+                        <button className="btn btn-sm btn-circle btn-ghost absolute text-[#4B4B4B] right-2 top-3">✕</button>
+                        <div className="signin p-5">
+                          <div className="text-center">
+                            <h1 className="font-bold text-[#4B4B4B] font-gilroy text-4xl">Login</h1>
+                            <h2 className="font-gilroyLight text-[#4B4B4B] text-lg py-5">Sign in with your email and password</h2>
+                          </div>
 
-                    <div className="flex flex-col justify-center place-items-center space-y-5 pt-3 font-gilroyLight pb-10">
-                      <div className="w-full">
-                        <Input label="Email Address" value={email} onChange={(e) => setEmail(e.target.value)}/>
-                      </div>
-                      <div className="w-full">
-                        <Input type="password" label="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                      </div>
-                    </div>
-                    <Link href="/">
-                      <button className="grid h-11 w-80 bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white text-lg font-gilroy font-bold rounded-md place-content-center" 
-                      onClick={(e) => handleSignIn(e)}
-                      >
-                        Login
-                      </button>
-                    </Link>
+                          <div className="flex flex-col justify-center place-items-center space-y-5 pt-3 font-gilroyLight pb-10">
+                            <div className="w-full">
+                              <Input label="Email Address" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                            </div>
+                            <div className="w-full">
+                              <Input type="password" label="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                            </div>
+                          </div>
+                          <Link href="/">
+                            <button className="grid h-11 w-80 bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white text-lg font-gilroy font-bold rounded-md place-content-center" 
+                            onClick={(e) => handleSignIn(e)}
+                            >
+                              Login
+                            </button>
+                          </Link>
 
-                  </div>
-                </form>
-              </dialog>
+                        </div>
+                      </form>
+                    </dialog>
+                    <button className="bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-xl text-white font-gilroy btn-block rounded-md"
+                      onClick={() => window.my_modal_2.showModal()}>Register</button>
+                    <dialog id="my_modal_2" className="modal">
+                      <form method="dialog" className="modal-box bg-white w-auto">
+                        <button className="btn btn-sm btn-circle btn-ghost absolute text-[#4B4B4B] right-2 top-3">✕</button>
+                        <div className="signin p-5">
+                          <div className="text-center">
+                            <h1 className="font-gilroy text-[#4B4B4B] text-4xl">Sign up</h1>
+                            <h2 className="font-gilroyLight text-[#4B4B4B] text-lg py-5">Register and Create an Account</h2>
+                          </div>
 
-              <button className="bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-xl text-white font-gilroy btn-block rounded-md"
-                onClick={() => window.my_modal_2.showModal()}>Register</button>
-              <dialog id="my_modal_2" className="modal">
-                <form method="dialog" className="modal-box bg-white w-auto">
-                  <button className="btn btn-sm btn-circle btn-ghost absolute text-[#4B4B4B] right-2 top-3">✕</button>
-                  <div className="signin p-5">
-                    <div className="text-center">
-                      <h1 className="font-gilroy text-[#4B4B4B] text-4xl">Sign up</h1>
-                      <h2 className="font-gilroyLight text-[#4B4B4B] text-lg py-5">Register and Create an Account</h2>
-                    </div>
+                          <div className="flex flex-col justify-center place-items-center space-y-5 font-gilroy">
+                            <Input size="lg" label="Name" value={name} onChange={(e) => setName(e.target.value)} />
+                            {/* Potentially problematic to use same email and password state for register and login inputs */}
+                            <Input size="lg" label="Email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                            <Input type="password" size="lg" label="Password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                            <Typography variant="small" color="gray" className="flex place-self-start gap-1 font-normal mt-2">
+                              <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                              Use at least 8 characters.
+                            </Typography>
 
-                    <div className="flex flex-col justify-center place-items-center space-y-5 font-gilroy">
-                      <Input size="lg" label="Name" value={name} onChange={(e) => setName(e.target.value)} />
-                      {/* Potentially problematic to use same email and password state for register and login inputs */}
-                      <Input size="lg" label="Email" value={email} onChange={(e) => setEmail(e.target.value)}/>
-                      <Input type="password" size="lg" label="Password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-                      <Typography variant="small" color="gray" className="flex place-self-start gap-1 font-normal mt-2">
-                        <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                        Use at least 8 characters.
-                      </Typography>
-
-                      <Link href="/">
-                        <button className="grid h-11 w-[26rem] bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white text-lg font-gilroy font-bold rounded-md place-content-center"
-                        onClick={(e) => handleRegister(e)}
-                        
-                        >
-                          Register
-                        </button>
-                      </Link>
-                    </div>
-                  </div>
-                </form>
-              </dialog>
+                            <Link href="/">
+                              <button className="grid h-11 w-[26rem] bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white text-lg font-gilroy font-bold rounded-md place-content-center"
+                              onClick={(e) => handleRegister(e)}
+                              
+                              >
+                                Register
+                              </button>
+                            </Link>
+                          </div>
+                        </div>
+                      </form>
+                    </dialog>
+                  </>
+                )
+              }
             </div>
           </div>
         </div>

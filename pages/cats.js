@@ -2,8 +2,32 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { useEffect, useState } from 'react';
 
 export default function Cats() {
+    const [cats, setCats] = useState([])
+    console.log("client ", cats)
+    useEffect(() => {
+        getCats()
+    }, [])
+    // console.log("client ", cats)
+
+    const getCats = async (e) => {
+    // e.preventDefault()
+        const result = await fetch(`/api/cats`, {
+            method: "GET",
+            headers: {
+            "Content-Type": "application/json",
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+            }
+        });
+        console.log(result)
+        const catsInDb = await result.json()
+        // console.log("cats ", catsInDb, "type ", typeof catsInDb)
+        setCats(catsInDb)
+        
+    }
+
     return (
         <>
             <Head>
@@ -37,222 +61,39 @@ export default function Cats() {
                 </div>
             </div>
 
-            {/*1st*/}
-            <div className="hero h-[70vh] mt-16">
-                <div className="h-5/6 items-center space-y-16">
-                    <div className="flex justify-center items-center space-x-16 h-[27rem]">
-
-                        {/*CAT 1*/}
-                        <div className="relative block rounded-3xl h-[27rem] w-[22rem] bg-gray-900 group">
-                            <img className="absolute inset-0 h-[27rem] w-[22rem] rounded-3xl group-hover:opacity-50" src="/c1.png" />
-                            <div className="relative p-10">
-                                <div className="transition-all transform translate-y-8 opacity-0 group-hover:opacity-100 group-hover:translate-y-0">
-                                    <p className="text-md text-white text-justify pb-3">
-                                        <span className="font-gilroy">Name: </span>name <br />
-                                        <span className="font-gilroy">Age: </span>name <br />
-                                        <span className="font-gilroy">Sex: </span>name <br />
-                                    </p>
-                                    <hr />
-                                    <p className="text-md text-white text-justify py-3">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sapien dui, ullamcorper et consectetur id,
-                                        semper eget sem. Sed rutrum, lacus et consequat rutrum, libero nisl tristique nunc, quis dictum odio neque
-                                        sit amet orci</p>
-                                    <Link href="/adopt">
-                                        <button className="w-full h-10 bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white font-gilroy rounded-full">Adopt Now</button>
-                                    </Link>
+            {/* Grid of Cat Cards */}
+            <div className="hero h-fit mt-16 mb-16">
+                <div className="h-5/6 items-center mb-16 ">
+                    <div className="grid grid-cols-3 gap-16 justify-center items-center ">
+                        {/* Cat Cards */}
+                        {
+                        cats.map((cat, index) => (
+                            <div key={index} className="relative block rounded-3xl h-[27rem] w-[22rem] bg-gray-900 group">
+                                <img className="absolute inset-0 h-[27rem] w-[22rem] rounded-3xl group-hover:opacity-50" src="/c1.png" />
+                                <div className="relative p-10">
+                                    <div className="transition-all transform translate-y-8 opacity-0 group-hover:opacity-100 group-hover:translate-y-0">
+                                        <p className="text-md text-white text-justify pb-3">
+                                            <span className="font-gilroy">Name: </span>{cat.name} <br />
+                                            <span className="font-gilroy">Age: </span>{cat.age} <br />
+                                            <span className="font-gilroy">Sex: </span>{cat.sex} <br />
+                                        </p>
+                                        <hr />
+                                        <p className="text-md text-white text-justify py-3">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sapien dui, ullamcorper et consectetur id,
+                                            semper eget sem. Sed rutrum, lacus et consequat rutrum, libero nisl tristique nunc, quis dictum odio neque
+                                            sit amet orci</p>
+                                        <Link href="/adopt">
+                                            <button className="w-full h-10 bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white font-gilroy rounded-full">Adopt Now</button>
+                                        </Link>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
-                        {/*CAT 2*/}
-                        <div className="relative block rounded-3xl h-[27rem] w-[22rem] bg-gray-900 group">
-                            <img className="absolute inset-0 h-[27rem] w-[22rem] rounded-3xl group-hover:opacity-50" src="/c1.png" />
-                            <div className="relative p-10">
-                                <div className="transition-all transform translate-y-8 opacity-0 group-hover:opacity-100 group-hover:translate-y-0">
-                                    <p className="text-md text-white text-justify pb-3">
-                                        <span className="font-gilroy">Name: </span>name <br />
-                                        <span className="font-gilroy">Age: </span>name <br />
-                                        <span className="font-gilroy">Sex: </span>name <br />
-                                    </p>
-                                    <hr />
-                                    <p className="text-md text-white text-justify py-3">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sapien dui, ullamcorper et consectetur id,
-                                        semper eget sem. Sed rutrum, lacus et consequat rutrum, libero nisl tristique nunc, quis dictum odio neque
-                                        sit amet orci</p>
-                                    <Link href="/adopt">
-                                        <button className="w-full h-10 bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white font-gilroy rounded-full">Adopt Now</button>
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/*CAT 3*/}
-                        <div className="relative block rounded-3xl h-[27rem] w-[22rem] bg-gray-900 group">
-                            <img className="absolute inset-0 h-[27rem] w-[22rem] rounded-3xl group-hover:opacity-50" src="/c1.png" />
-                            <div className="relative p-10">
-                                <div className="transition-all transform translate-y-8 opacity-0 group-hover:opacity-100 group-hover:translate-y-0">
-                                    <p className="text-md text-white text-justify pb-3">
-                                        <span className="font-gilroy">Name: </span>name <br />
-                                        <span className="font-gilroy">Age: </span>name <br />
-                                        <span className="font-gilroy">Sex: </span>name <br />
-                                    </p>
-                                    <hr />
-                                    <p className="text-md text-white text-justify py-3">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sapien dui, ullamcorper et consectetur id,
-                                        semper eget sem. Sed rutrum, lacus et consequat rutrum, libero nisl tristique nunc, quis dictum odio neque
-                                        sit amet orci</p>
-                                    <Link href="/adopt">
-                                        <button className="w-full h-10 bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white font-gilroy rounded-full">Adopt Now</button>
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
+                        ))
+                        }
                     </div>
                 </div>
             </div>
 
-            {/*2nd*/}
-            <div className="hero h-[70vh]">
-                <div className="h-5/6 items-center space-y-16">
-                    <div className="flex justify-center items-center space-x-16 h-[27rem]">
-                        {/*CAT 1*/}
-                        <div className="relative block rounded-3xl h-[27rem] w-[22rem] bg-gray-900 group">
-                            <img className="absolute inset-0 h-[27rem] w-[22rem] rounded-3xl group-hover:opacity-50" src="/c1.png" />
-                            <div className="relative p-10">
-                                <div className="transition-all transform translate-y-8 opacity-0 group-hover:opacity-100 group-hover:translate-y-0">
-                                    <p className="text-md text-white text-justify pb-3">
-                                        <span className="font-gilroy">Name: </span>name <br />
-                                        <span className="font-gilroy">Age: </span>name <br />
-                                        <span className="font-gilroy">Sex: </span>name <br />
-                                    </p>
-                                    <hr />
-                                    <p className="text-md text-white text-justify py-3">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sapien dui, ullamcorper et consectetur id,
-                                        semper eget sem. Sed rutrum, lacus et consequat rutrum, libero nisl tristique nunc, quis dictum odio neque
-                                        sit amet orci</p>
-                                    <Link href="/adopt">
-                                        <button className="w-full h-10 bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white font-gilroy rounded-full">Adopt Now</button>
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/*CAT 2*/}
-                        <div className="relative block rounded-3xl h-[27rem] w-[22rem] bg-gray-900 group">
-                            <img className="absolute inset-0 h-[27rem] w-[22rem] rounded-3xl group-hover:opacity-50" src="/c1.png" />
-                            <div className="relative p-10">
-                                <div className="transition-all transform translate-y-8 opacity-0 group-hover:opacity-100 group-hover:translate-y-0">
-                                    <p className="text-md text-white text-justify pb-3">
-                                        <span className="font-gilroy">Name: </span>name <br />
-                                        <span className="font-gilroy">Age: </span>name <br />
-                                        <span className="font-gilroy">Sex: </span>name <br />
-                                    </p>
-                                    <hr />
-                                    <p className="text-md text-white text-justify py-3">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sapien dui, ullamcorper et consectetur id,
-                                        semper eget sem. Sed rutrum, lacus et consequat rutrum, libero nisl tristique nunc, quis dictum odio neque
-                                        sit amet orci</p>
-                                    <Link href="/adopt">
-                                        <button className="w-full h-10 bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white font-gilroy rounded-full">Adopt Now</button>
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/*CAT 3*/}
-                        <div className="relative block rounded-3xl h-[27rem] w-[22rem] bg-gray-900 group">
-                            <img className="absolute inset-0 h-[27rem] w-[22rem] rounded-3xl group-hover:opacity-50" src="/c1.png" />
-                            <div className="relative p-10">
-                                <div className="transition-all transform translate-y-8 opacity-0 group-hover:opacity-100 group-hover:translate-y-0">
-                                    <p className="text-md text-white text-justify pb-3">
-                                        <span className="font-gilroy">Name: </span>name <br />
-                                        <span className="font-gilroy">Age: </span>name <br />
-                                        <span className="font-gilroy">Sex: </span>name <br />
-                                    </p>
-                                    <hr />
-                                    <p className="text-md text-white text-justify py-3">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sapien dui, ullamcorper et consectetur id,
-                                        semper eget sem. Sed rutrum, lacus et consequat rutrum, libero nisl tristique nunc, quis dictum odio neque
-                                        sit amet orci</p>
-                                    <Link href="/adopt">
-                                        <button className="w-full h-10 bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white font-gilroy rounded-full">Adopt Now</button>
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/*3rd*/}
-            <div className="hero h-[70vh] mb-16">
-                <div className="h-5/6 items-center space-y-16">
-                    <div className="flex justify-center items-center space-x-16 h-[27rem]">
-                        <div className="relative block rounded-3xl h-[27rem] w-[22rem] bg-gray-900 group">
-                            <img className="absolute inset-0 h-[27rem] w-[22rem] rounded-3xl group-hover:opacity-50" src="/c1.png" />
-                            <div className="relative p-10">
-                                <div className="transition-all transform translate-y-8 opacity-0 group-hover:opacity-100 group-hover:translate-y-0">
-                                    <p className="text-md text-white text-justify pb-3">
-                                        <span className="font-gilroy">Name: </span>name <br />
-                                        <span className="font-gilroy">Age: </span>name <br />
-                                        <span className="font-gilroy">Sex: </span>name <br />
-                                    </p>
-                                    <hr />
-                                    <p className="text-md text-white text-justify py-3">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sapien dui, ullamcorper et consectetur id,
-                                        semper eget sem. Sed rutrum, lacus et consequat rutrum, libero nisl tristique nunc, quis dictum odio neque
-                                        sit amet orci</p>
-                                    <Link href="/adopt">
-                                        <button className="w-full h-10 bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white font-gilroy rounded-full">Adopt Now</button>
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="relative block rounded-3xl h-[27rem] w-[22rem] bg-gray-900 group">
-                            <img className="absolute inset-0 h-[27rem] w-[22rem] rounded-3xl group-hover:opacity-50" src="/c1.png" />
-                            <div className="relative p-10">
-                                <div className="transition-all transform translate-y-8 opacity-0 group-hover:opacity-100 group-hover:translate-y-0">
-                                    <p className="text-md text-white text-justify pb-3">
-                                        <span className="font-gilroy">Name: </span>name <br />
-                                        <span className="font-gilroy">Age: </span>name <br />
-                                        <span className="font-gilroy">Sex: </span>name <br />
-                                    </p>
-                                    <hr />
-                                    <p className="text-md text-white text-justify py-3">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sapien dui, ullamcorper et consectetur id,
-                                        semper eget sem. Sed rutrum, lacus et consequat rutrum, libero nisl tristique nunc, quis dictum odio neque
-                                        sit amet orci</p>
-                                    <Link href="/adopt">
-                                        <button className="w-full h-10 bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white font-gilroy rounded-full">Adopt Now</button>
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="relative block rounded-3xl h-[27rem] w-[22rem] bg-gray-900 group">
-                            <img className="absolute inset-0 h-[27rem] w-[22rem] rounded-3xl group-hover:opacity-50" src="/c1.png" />
-                            <div className="relative p-10">
-                                <div className="transition-all transform translate-y-8 opacity-0 group-hover:opacity-100 group-hover:translate-y-0">
-                                    <p className="text-md text-white text-justify pb-3">
-                                        <span className="font-gilroy">Name: </span>name <br />
-                                        <span className="font-gilroy">Age: </span>name <br />
-                                        <span className="font-gilroy">Sex: </span>name <br />
-                                    </p>
-                                    <hr />
-                                    <p className="text-md text-white text-justify py-3">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sapien dui, ullamcorper et consectetur id,
-                                        semper eget sem. Sed rutrum, lacus et consequat rutrum, libero nisl tristique nunc, quis dictum odio neque
-                                        sit amet orci</p>
-                                    <Link href="/adopt">
-                                        <button className="w-full h-10 bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white font-gilroy rounded-full">Adopt Now</button>
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <Footer />
         </>
     );
