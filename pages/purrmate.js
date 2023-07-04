@@ -1,7 +1,18 @@
 import Head from 'next/head';
 import Link from 'next/link';
+//import Start from './purrmate/start'
+import React from 'react'
+import { useParams } from "react-router-dom";
+import Start from "./purrmate/start"
+import Need from "./purrmate/need"
 
-export default function Purrmate() {
+
+const questions = {
+    "need": <Need />,
+  }
+
+export default function App() {
+    const { id } = useParams();
     return (
         <>
             <Head>
@@ -13,15 +24,20 @@ export default function Purrmate() {
                     <img src="/q3.png" style={{ width: '70vh', objectFit: 'cover' }} />
                 </div>
 
-                <div className="flex h-screen">
+                <div className="flex h-screen w-screen" >
                     <div className="grid w-96 bg-[#9CBE63]">
                         <Link href="/">
                             <img className="m-5 rounded-full hover:shadow-xl" src="/return-icon.png" />
                         </Link>
                     </div>
-                    <div className="grid w-60 place-items-center">
-                        <div className="recommender-content">
-                            
+                    <div className="grid w-full place-items-center bg-[#f0f7ed]">
+                        <div className="recommender-content flex justify-center items-center place-items-center ">
+                        { questions[id] 
+                            ? <>
+                                {questions[id]}
+                            </> 
+                            : <Start />
+                        }
                         </div>
                     </div>
                 </div>
