@@ -99,7 +99,7 @@ export default function Adopt() {
 
                         <div className="form-control py-5">
                             <label className="label">
-                                <span className="label-text">Describe your ideal pet, including its sex, age, appearance, temperament, etc*</span>
+                                <span className="label-text">Describe your ideal pet, including its sex, age, appearance, temperament, etc</span>
                             </label>
                             <textarea className="textarea textarea-bordered bg-gray-100 h-24"></textarea>
                         </div>

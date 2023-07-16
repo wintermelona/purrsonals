@@ -50,6 +50,21 @@ const Navbar = () => {
 
   //const { open, loggedIn } = useContext(something);
 
+  //CARD
+  //const [cardAmount, setCardAmount] = useState();
+  //const [email, setEmail] = useState();
+  //const [cardNumber, setCardNumber] = useState();
+  //const [cardExpire, setCardExpire] = useState();
+  //const [cardCVC, setCardCVC] = useState();
+  //const [cardName, setCardName] = useState();
+
+  //GCASH
+  //const [gcashAmount, setGcashAmount] = useState();
+  //const [refNum, setRefNum] = useState();
+  //const [firstName, setFirstName] = useState();
+  //const [lastName, setLastName] = useState();
+  //const [gcashNum, setGcashNum] = useState();
+
   return <div className={classNames("navbar", scrollPosition > 0 ? 'bg-white shadow' : 'bg-transparent', 'sticky top-0 z-20 transition-all')}>
     <div className="navbar-start ml-4">
       <div className="dropdown">
@@ -161,6 +176,11 @@ const Navbar = () => {
                   </div>
                 </form>
               </dialog>
+
+              <Link href="/tracking" className="w-full">
+                <button className="bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-xl text-white font-gilroy btn-block rounded-md">Track Status</button>
+              </Link>
+
             </div>
           </div>
         </div>
@@ -170,7 +190,7 @@ const Navbar = () => {
     </div>
 
     <button className="bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white font-aristotelica font-bold text-xl w-44 h-8 pt-2 rounded-full place-content-center"
-      onClick={() => window.my_modal_3.showModal()}>Donate </button>
+      onClick={() => window.my_modal_3.showModal()}>Donate</button>
     <dialog id="my_modal_3" className="modal">
       <form method="dialog" className="modal-box bg-white w-auto">
         <button className="btn btn-sm btn-circle btn-ghost absolute text-[#4B4B4B] right-2 top-3">✕</button>
@@ -184,7 +204,7 @@ const Navbar = () => {
               <Tabs.Tab value="card" className="font-gilroyLight" onClick={() => setType("card")}>
                 Card
               </Tabs.Tab>
-              <Tabs.Tab value="paypal" className="font-gilroyLight" onClick={() => setType("paypal")}>
+              <Tabs.Tab value="gcash" className="font-gilroyLight" onClick={() => setType("gcash")}>
                 GCash
               </Tabs.Tab>
             </Tabs.Header>
@@ -200,10 +220,15 @@ const Navbar = () => {
                 unmount: {
                   x: type === "card" ? 400 : -400,
                 },
-              }}
-            >
+              }}>
+
               <Tabs.Panel value="card" className="p-0">
                 <div className="pt-2 flex flex-col gap-4">
+
+                  <div className="pt-4">
+                    <Input label="Amount" />
+                  </div>
+
                   <div className="font-gilroyLight">
                     <label className="label">
                       <span className="label-text">Personal Details</span>
@@ -249,16 +274,63 @@ const Navbar = () => {
                   <Typography
                     variant="small"
                     color="gray"
-                    className="mt-2 flex items-center justify-center gap-2 font-normal opacity-60"
-                  >
-                    <LockClosedIcon className="-mt-0.5 h-4 w-4" /> Payments are
+                    className="mt-2 flex items-center justify-center gap-2 font-normal opacity-60">
+                    <LockClosedIcon className="-mt-0.5 h-4 w-4" /> Donations are
                     secure and encrypted
                   </Typography>
                 </div>
               </Tabs.Panel>
-              <Tabs.Panel value="paypal" className="p-0">
-                <div className="mt-6 flex flex-col gap-4">
-                  <img src="/donate.png" />
+
+              <Tabs.Panel value="gcash" className="p-0">
+                <div className="pt-2 flex flex-col gap-4">
+                  <div className="font-gilroyLight">
+                    <label className="label">
+                      <span className="label-text">GCash Details</span>
+                    </label>
+                    <h1 className="text-center">Dyne Andrei A. <br />
+                      09064114130</h1>
+                  </div>
+
+                  <div className="pt-4">
+                    <Input label="Amount" />
+                  </div>
+
+                  <div className="pb-4 font-gilroyLight">
+                    <label className="label">
+                      <span className="label-text">Donation Details</span>
+                    </label>
+
+                    <Input
+                      label="Reference Number"
+                      maxLength={19}
+                      value={formatCardNumber(cardNumber)}
+                      onChange={(event) => setCardNumber(event.target.value)}
+                    />
+                    <div className="my-4 flex items-center gap-4">
+                      <Input
+                        label="First Name"
+                        containerClassName="min-w-[72px]"
+                      />
+                      <Input
+                        label="Last Name"
+                        containerClassName="min-w-[72px]"
+                      />
+                    </div>
+                    <Input label="GCash Number" />
+                  </div>
+                  <Link href="/">
+                    <button className="grid h-11 w-full bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white text-lg font-gilroy font-bold rounded-md place-content-center">
+                      Donate
+                    </button>
+                  </Link>
+                  <Typography
+                    variant="small"
+                    color="gray"
+                    className="mt-2 flex items-center justify-center gap-2 font-normal opacity-60"
+                  >
+                    <LockClosedIcon className="-mt-0.5 h-4 w-4" /> Donations are
+                    secure and encrypted
+                  </Typography>
                 </div>
               </Tabs.Panel>
             </Tabs.Body>
