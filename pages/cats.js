@@ -12,7 +12,7 @@ export default function Cats() {
     }, [])
     // console.log("client ", cats)
 
-    const getCats = async (e) => {
+    const getCats = async () => {
     // e.preventDefault()
         const result = await fetch(`/api/cats`, {
             method: "GET",
@@ -69,7 +69,7 @@ export default function Cats() {
                         {
                         cats.map((cat, index) => (
                             <div key={index} className="relative block rounded-3xl h-[27rem] w-[22rem] bg-gray-900 group">
-                                <img className="absolute inset-0 h-[27rem] w-[22rem] rounded-3xl group-hover:opacity-50" src="/c1.png" />
+                                <img className="absolute inset-0 h-[27rem] w-[22rem] rounded-3xl group-hover:opacity-50" src={cat.image} />
                                 <div className="relative p-10">
                                     <div className="transition-all transform translate-y-8 opacity-0 group-hover:opacity-100 group-hover:translate-y-0">
                                         <p className="text-md text-white text-justify pb-3">
@@ -79,9 +79,7 @@ export default function Cats() {
                                         </p>
                                         <hr />
                                         <p className="text-md text-white text-justify py-3">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sapien dui, ullamcorper et consectetur id,
-                                            semper eget sem. Sed rutrum, lacus et consequat rutrum, libero nisl tristique nunc, quis dictum odio neque
-                                            sit amet orci</p>
+                                            {cat.description} </p>
                                         <Link href="/adopt">
                                             <button className="w-full h-10 bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white font-gilroy rounded-full">Adopt Now</button>
                                         </Link>
