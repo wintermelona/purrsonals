@@ -10,8 +10,11 @@ export const authOptions = {
     session: {
         strategy: 'jwt'
     },
+  // TODO:
   // Authentication providers, using login credentials
   // Can add others later
+  // Add user roles, only admin should be able to access admin pages
+  // Add protected routes middleware
   providers: [
   CredentialsProvider({
     name: "credentials",

@@ -49,7 +49,7 @@ model User {
   updatedAt     DateTime  @updatedAt
   accounts      Account[]
   sessions      Session[]
-  cats          Cat[]
+  // cats          Cat[]
 }
 
 model VerificationRequest {
@@ -72,15 +72,16 @@ model Message {
 
 model Cat {
   id            String    @id @default(cuid())
-  userId        String?
+  // userId        String?
   name          String
   sex           String
   age           String?   @default("1")
-  image         String?
+  description   String?
+  image         String?   @default("https://res.cloudinary.com/dxfmetzdk/image/upload/v1689573001/default_cat_card.png")
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
-  owner         User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  // owner         User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
   @@unique([id])  
-  @@index([userId])
+  // @@index([userId])
 
 }

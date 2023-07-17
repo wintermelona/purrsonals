@@ -6,17 +6,52 @@ import {
     Radio,
     Textarea,
 } from "@material-tailwind/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function cats() {
+export default function Cats() {
     const [cats, setCats] = useState([]);
-    const [name, setName] = useState();
-    const [sex, setSex] = useState();
-    const [age, setAge] = useState();
-    const [description, setDescription] = useState();
+    const [name, setName] = useState("");
+    const [sex, setSex] = useState("");
+    const [age, setAge] = useState("");
+    const [description, setDescription] = useState("");
     const [deleteMode, setDeleteMode] = useState(false);
-
+    const [image, setImage] = useState("")
     //const [search, setSearch] = useState('')
+
+    useEffect(() => {
+        getCats()
+    }, [])
+    // console.log("client ", cats)
+
+    const getCats = async () => {
+    // e.preventDefault()
+        const result = await fetch(`/api/cats`, {
+            method: "GET",
+            headers: {
+            "Content-Type": "application/json",
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+            }
+        });
+        console.log(result)
+        const catsInDb = await result.json()
+        // console.log("cats ", catsInDb, "type ", typeof catsInDb)
+        setCats(catsInDb)
+    }
+
+
+    const addCatHandler = async () => {
+        const formData = new FormData();
+        formData.append("name", name);
+        formData.append("sex", sex);
+        formData.append("age", age);
+        formData.append("description", description);
+        formData.append("image", image);
+        console.log("image", image)
+        const result = await fetch('/api/cats/', {
+            method: "POST",
+            body: formData
+        })
+    }
 
     return (
         <>
@@ -80,9 +115,10 @@ export default function cats() {
 
                                 <label className="text-[#4B4B4B]">Upload a photo</label>
                                 <div>
-                                    <input type="file" className="file-input w-72 mt-2" />
+                                    <input type="file" className="file-input w-72 mt-2" onChange={e => setImage(e.target.files[0])}/>
                                 </div>
-                                <button className="border-0 bg-[#9cbf62] mt-4 ease-in duration-150 hover:bg-[#8cac58] text-md text-white font-gilroy normal-case h-8 w-20 rounded-full" onClick={() => {
+                                <button className="border-0 bg-[#9cbf62] mt-4 ease-in duration-150 hover:bg-[#8cac58] text-md text-white font-gilroy normal-case h-8 w-20 rounded-full" 
+                                onClick={() => {
                                     if (name && age && sex && description) {
                                         setCats((cats) => {
                                             return [...cats, {
@@ -96,6 +132,7 @@ export default function cats() {
                                         setAge('');
                                         setDescription('');
                                     }
+                                    addCatHandler()
                                 }}>Save</button>
                             </form>
                         </dialog>
