@@ -37,9 +37,9 @@ export default function Cats() {
             <Navbar />
 
             <div className="hero min-h-screen" style={{ backgroundImage: 'url(/h4.png)' }}>
-                <div class="relative w-full h-[70%]">
-                    <div class="absolute top-0 right-0 h-96 w-[48%]">
-                        <div class="w-2/3">
+                <div className="relative w-full h-[70%]">
+                    <div className="absolute top-0 right-0 h-96 w-[48%]">
+                        <div className="w-2/3">
                             <h1 className="xl:text-7xl lg:text-6xl font-gilroy">
                                 <span className="text-[#C5996C]">Meet</span> the Cats
                             </h1>

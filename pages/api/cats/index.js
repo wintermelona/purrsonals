@@ -1,10 +1,10 @@
 // import prisma from '/lib/db';
-import formidable from "formidable";
 import path from "path";
 import fs from "fs/promises";
 import cloudinary from 'cloudinary';
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
+import readFile from "lib/readFile";
 
 export default async function handler(req, res) {
     // POST cat can parse images
@@ -14,11 +14,13 @@ export default async function handler(req, res) {
         const result = await prisma.cat.findMany()
         const cats = await result
         // console.log("cats ", cats)
-        res.status(400).json(cats)
+        res.status(200).json(cats)
     }
 
     if(method === "POST") {
-      // Cloudinary not uploading to correct folder
+      // NOTE: Cloudinary not uploading to correct folder
+
+      // This code uploads locally if needed
         try {
             await fs.readdir(path.join(process.cwd() + "/public", "/images"));
         } catch (error) {
@@ -85,22 +87,3 @@ export const config = {
   },
 }
 
-const readFile = (req, saveLocally) => {
-  const options = {};
-  if (saveLocally) {
-    options.uploadDir = path.join(process.cwd(), "/public/images");
-    options.filename = (name, ext, path, form) => {
-      return Date.now().toString() + "_" + path.originalFilename;
-    };
-  }
-//   options.maxFileSize = 40 * 1024 * 1024;
-  options.maxFiles = 1;
-  const form = formidable(options);
-  return new Promise((resolve, reject) => {
-    form.parse(req, (err, fields, files) => {
-      if (err) reject(err);
-      resolve({ fields, files });
-    });
-  });
-};
-    

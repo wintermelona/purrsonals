@@ -24,7 +24,7 @@ export default function Cats() {
     // console.log("client ", cats)
 
     const getCats = async () => {
-    // e.preventDefault()
+        // e.preventDefault()
         const result = await fetch(`/api/cats`, {
             method: "GET",
             headers: {
@@ -53,6 +53,29 @@ export default function Cats() {
         })
     }
 
+    const deleteCatHandler = async (cat) => {
+
+        if (deleteMode) {
+            setCats((cats) => {
+                // stands for cat, kasi kapag cat ginamit ko, magcconflict siya
+                return cats.filter((c) => {
+                    // if (c == cat) {
+                    //     console.log("cat to be deleted ", c.name)
+                    // } // wala lang to note ko lang sya
+                    return c !== cat
+                });
+            })
+            setDeleteMode(false);
+        }
+        const result = await fetch(`/api/cats/${cat.id}`, {
+            method: "DELETE",
+            headers: {
+            "Content-Type": "application/json",
+            }
+        });
+        // console.log("deleted ", await result.json())
+        
+    }
     return (
         <>
             <Head>
@@ -149,15 +172,7 @@ export default function Cats() {
                     <div className="flex w-full flex-wrap">
                         {cats.map((cat, idx) => {
                             // idx=index
-                            return <div key={idx} onClick={() => {
-                                if (deleteMode) {
-                                    setCats((cats) => {
-                                        // stands for cat, kasi kapag cat ginamit ko, magcconflict siya
-                                        return cats.filter((c) => c !== cat);
-                                    })
-                                    setDeleteMode(false);
-                                }
-                            }}>
+                            return <div key={idx} onClick={() => deleteCatHandler(cat)}>
                                 <CatProf cat={cat} deleteMode={deleteMode} />
                             </div>
                         })}
