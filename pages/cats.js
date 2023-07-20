@@ -13,19 +13,19 @@ export default function Cats() {
     // console.log("client ", cats)
 
     const getCats = async () => {
-    // e.preventDefault()
+        // e.preventDefault()
         const result = await fetch(`/api/cats`, {
             method: "GET",
             headers: {
-            "Content-Type": "application/json",
-            // 'Content-Type': 'application/x-www-form-urlencoded',
+                "Content-Type": "application/json",
+                // 'Content-Type': 'application/x-www-form-urlencoded',
             }
         });
         console.log(result)
         const catsInDb = await result.json()
         // console.log("cats ", catsInDb, "type ", typeof catsInDb)
         setCats(catsInDb)
-        
+
     }
 
     return (
@@ -62,12 +62,11 @@ export default function Cats() {
             </div>
 
             {/* Grid of Cat Cards */}
-            <div className="hero h-fit mt-16 mb-16">
-                <div className="h-5/6 items-center mb-16 ">
-                    <div className="grid grid-cols-3 gap-16 justify-center items-center ">
+            <div className="hero h-fit my-28">
+                <div className="items-center">
+                    <div className="grid grid-cols-3 gap-16 justify-center items-center">
                         {/* Cat Cards */}
-                        {
-                        cats.map((cat, index) => (
+                        {cats.map((cat, index) => (
                             <div key={index} className="relative block rounded-3xl h-[27rem] w-[22rem] bg-gray-900 group">
                                 <img className="absolute inset-0 h-[27rem] w-[22rem] rounded-3xl group-hover:opacity-50" src={cat.image} />
                                 <div className="relative p-10">
@@ -78,20 +77,22 @@ export default function Cats() {
                                             <span className="font-gilroy">Sex: </span>{cat.sex} <br />
                                         </p>
                                         <hr />
-                                        <p className="text-md text-white text-justify py-3">
-                                            {cat.description} </p>
-                                        <Link href="/adopt">
-                                            <button className="w-full h-10 bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white font-gilroy rounded-full">Adopt Now</button>
-                                        </Link>
+                                        <div className="text-md text-white text-justify py-3 h-56 overflow-y-auto no-scrollbar">
+                                            {cat.description}
+                                        </div>
+
+                                        <div className="justify-end">
+                                            <Link href="/adopt">
+                                                <button className="w-full h-10 bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white font-gilroy rounded-full">Adopt Now</button>
+                                            </Link>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        ))
-                        }
+                        ))}
                     </div>
                 </div>
             </div>
-
             <Footer />
         </>
     );

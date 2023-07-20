@@ -28,8 +28,8 @@ export default function Adopt() {
                 </div>
             </div>
 
-            <div className="hero-min-[70vh] pt-10 pb-20">
-                <div className="content w-full justify-center items-center mx-auto flex flex-col py-10">
+            <div className="my-28">
+                <div className="content w-full justify-center items-center mx-auto flex flex-col">
                     <h3 className="text-xl font-thin text-[#a3a3a1] text-center pb-5">APPLICATION</h3>
                     <h1 className="text-5xl font-gilroy text-center">
                         <span className="text-[#C5996C]">Fill</span> up the form and<br />
@@ -37,12 +37,24 @@ export default function Adopt() {
                     </h1>
 
                     <div className="form w-[71rem] pt-20">
-                        <div className="form-control flex pb-5">
+                        <label className="label">
+                            <span className="label-text">Pick the cat you want to adopt</span>
+                        </label>
+                        <select className="select bg-gray-100 w-[34rem] mb-5">
+                            <option disabled selected>Select</option>
+                            <option>Cat1</option>
+                            <option>Cat2</option>
+                            <option>Cat3</option>
+                        </select>
+
+                        <hr />
+
+                        <div className="form-control flex my-5">
                             <label className="label">
                                 <span className="label-text">Name</span>
                             </label>
 
-                            <div className="name flex pb-5 space-x-12">
+                            <div className="name flex mb-5 space-x-12">
                                 <div className="grid">
                                     <input type="text" placeholder="First Name" className="input bg-gray-100 w-[34rem]" />
                                 </div>
@@ -52,14 +64,14 @@ export default function Adopt() {
                                 </div>
                             </div>
 
-                            <div className="address pb-5">
+                            <div className="address mb-5">
                                 <label className="label">
                                     <span className="label-text">Address</span>
                                 </label>
                                 <input type="text" className="input bg-gray-100 w-full" />
                             </div>
 
-                            <div className="name flex pb-5 space-x-12">
+                            <div className="name flex mb-5 space-x-12">
                                 <div className="grid">
                                     <label className="label">
                                         <span className="label-text">Phone</span>
@@ -75,7 +87,7 @@ export default function Adopt() {
                                 </div>
                             </div>
 
-                            <div className="name flex pb-5 space-x-12">
+                            <div className="name flex mb-5 space-x-12">
                                 <div className="grid">
                                     <label className="label">
                                         <span className="label-text">Occupation</span>
@@ -97,14 +109,14 @@ export default function Adopt() {
 
                         <hr />
 
-                        <div className="form-control py-5">
+                        <div className="form-control my-5">
                             <label className="label">
                                 <span className="label-text">Describe your ideal pet, including its sex, age, appearance, temperament, etc</span>
                             </label>
                             <textarea className="textarea textarea-bordered bg-gray-100 h-24"></textarea>
                         </div>
 
-                        <div className="name flex pb-5 space-x-[21rem]">
+                        <div className="name flex mb-5 space-x-[21rem]">
                             <div className="grid">
                                 <label className="label">
                                     <span className="label-text">What type of building do you live in?</span>

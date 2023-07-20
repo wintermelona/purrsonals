@@ -215,7 +215,7 @@ const Navbar = () => {
                             <h2 className="font-gilroyLight text-[#4B4B4B] text-lg py-5">Register and Create an Account</h2>
                           </div>
 
-                          <div className="flex flex-col justify-center place-items-center space-y-5 font-gilroy">
+                          <div className="flex flex-col justify-center place-items-center space-y-5 font-gilroyLight">
                             <Input size="lg" label="Name" value={name} onChange={(e) => setName(e.target.value)} />
                             {/* Potentially problematic to use same email and password state for register and login inputs */}
                             <Input size="lg" label="Email" value={email} onChange={(e) => setEmail(e.target.value)}/>
