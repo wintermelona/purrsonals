@@ -102,19 +102,23 @@ enum BuildingType {
 
 
 model Application {
-  id            String    @id @default(cuid())
+  id            String      @id @default(cuid())
   userId        String
-  name          String
-  address       String    @db.Text
+  firstname     String
+  lastname      String
+  address       String      @db.Text
+  adoptee       String      
   phone         String?
   email         String
-  occupation    String?    @default("N/A")
+  occupation    String?     @default("N/A")
+  description   String?     
   buildingType  BuildingType    @default(HOUSE)
-  adoption      Boolean   @default(false)
-  renting       Boolean   @default(false)
-  applicant     User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  adoption      Boolean     @default(false)
+  renting       Boolean     @default(false)
+  status        String?     @default("Pending")
+  applicant     User?       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
   
   @@index([userId])
   @@unique([id])  

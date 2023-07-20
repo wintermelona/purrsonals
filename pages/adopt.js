@@ -3,8 +3,31 @@ import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Radio } from "@material-tailwind/react";
+import { useEffect, useState } from 'react';
 
 export default function Adopt() {
+    const [cats, setCats] = useState([])
+    useEffect(() => {
+        getCats()
+    }, [])
+    // console.log("client ", cats)
+
+    const getCats = async () => {
+        // e.preventDefault()
+        const result = await fetch(`/api/cats`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            }
+        });
+        console.log(result)
+        const catsInDb = await result.json()
+        // console.log("cats ", catsInDb, "type ", typeof catsInDb)
+        setCats(catsInDb)
+
+    }
+
     return (
         <>
             <Head>
@@ -42,6 +65,7 @@ export default function Adopt() {
                         </label>
                         <select className="select bg-gray-100 w-[34rem] mb-5">
                             <option disabled selected>Select</option>
+                            {/* TODO */}
                             <option>Cat1</option>
                             <option>Cat2</option>
                             <option>Cat3</option>

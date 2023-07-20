@@ -1,8 +1,29 @@
 import Head from 'next/head';
 import AdminNav from '@/components/AdminNav';
 import AdminApplication from '@/components/AdminApplication'
+import { useEffect, useState } from 'react';
 
-export default function applications() {
+export default function Applications() {
+    const [data, setData] = useState([])
+    useEffect(() => {
+        getApplication()
+    }, [])
+    const getApplication = async () => {
+        const data = await fetch('/api/application', {method: "GET", headers: {'Content-Type': 'application/json'}})
+        const res = await data.json()
+        console.log(res)
+        setData(res)
+    }
+    const editApplication = async (id, status) => {
+        const data = await fetch(`/api/application/${id}`, {method: "PATCH", headers: {'Content-Type': 'application/json'},
+            body: {
+                status
+            }
+        })
+        const res = await data.json()
+        console.log(res)
+        setData(res)
+    }
     return (
         <>
             <Head>
@@ -29,8 +50,12 @@ export default function applications() {
                             </svg>
                         </button>
                     </div>
-                    <AdminApplication />
-                </div>
+                    {
+                        data.map((application, index) => {
+                            return <AdminApplication {...application} key={index}/>
+                        })
+                    }
+                </div> 
             </div>
         </>
     );

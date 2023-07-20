@@ -170,6 +170,10 @@ const Navbar = () => {
                 
                 <button className="bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-xl text-white font-gilroy btn-block rounded-md"
                 onClick={signOut}>Logout</button>
+                
+                <Link href="/tracking" className="w-full">
+                      <button className="bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-xl text-white font-gilroy btn-block rounded-md">Track Status</button>
+                    </Link>
                 </>) 
                 :
                 (
@@ -237,9 +241,7 @@ const Navbar = () => {
                         </div>
                       </form>
                     </dialog>
-                    <Link href="/tracking" className="w-full">
-                      <button className="bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-xl text-white font-gilroy btn-block rounded-md">Track Status</button>
-                    </Link>
+                    
                   </>
                 )
               }

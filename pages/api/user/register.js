@@ -4,8 +4,8 @@ import prisma from '/lib/db';
 
 
 export default async function register(req, res) {
-    // Revisit this, look for login
-    const {name, email, password} = req.body
+    // TODO: Revisit this, look for login
+    const { name, email, password } = req.body
 
     console.log("{name, email, password}", name, email, password)
 
