@@ -74,8 +74,8 @@ export default async function handler(req, res) {
                     message: "Successfully created cat",
                     cat
                 })
-        }catch {
-            console.log("Cat creation failed")
+        }catch (error){
+            console.log("Cat creation failed ", error)
             res.status(409).json({message: "Cat creation failed."})
         }
     }
