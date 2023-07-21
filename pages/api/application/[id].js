@@ -19,7 +19,7 @@ export default async function handler(req, res) {
                 status
             }
         })
-        console.log(application)
+        console.log(`Application ID ${application.id} name: ${application.firstname } ${application.lastname}`, "| Updated application, new status: ", application.status )
         res.status(200).json({message: "Application edit success"})
     }
 

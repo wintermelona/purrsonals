@@ -20,6 +20,7 @@ export default async function handler(req, res) {
 
 
     if (method === "DELETE") {
+        console.log("Triggered delete")
         const { id } = req.query
         console.log("id ", id)
 
@@ -29,7 +30,7 @@ export default async function handler(req, res) {
                     id
                 }
             })
-            console.log(cat)
+            console.log("Cat deleted, ", cat.id, cat.name, cat.description, cat.image)
             return res.status(200).json(cat) 
         } catch (error) {
             console.log(error)

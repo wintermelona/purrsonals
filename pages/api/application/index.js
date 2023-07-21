@@ -23,18 +23,20 @@ export default async function handler(req, res) {
     if(method === "POST") {
         // The application needs to be associated with a user
         // Use email -> only make adoption available if registered / logged in
-        let { firstname, lastname, address, phone, email, occupation,  adoptee, description, buildingType, adoption, renting, status } = req.body
-        if ( !firstname || !lastname ||  !address  || !phone  || !email || !occupation  || !adoptee || !description || !buildingType || !adoption || !renting || !status ){
-            console.log("Missing credentials")
-            res.json({message: "Error missing credentials"})
+        let { firstname, lastname, address, phone, email, occupation,  adoptee, description, buildingType, adoption, renting } = req.body
+        if ( !firstname || !lastname ||  !address  || !phone  || !email || !occupation  || !adoptee || !description || !buildingType || adoption === null || renting === null ){
+            console.log("Missing credentials ", { firstname, lastname, address, phone, email, occupation,  adoptee, description, buildingType, adoption, renting })
+            return res.json({message: "Error missing credentials"})
         }
 
         adoption = Boolean(adoption)
         renting = Boolean(renting)
-        status = Boolean(status)
 
         try {
             const user = await prisma.user.findUnique( { where : { email }} )
+            if(user === null){
+                throw Error(`User with email: ${email} is not found.`)
+            }
             const userId = user.id
 
             const application = await prisma.application.create({
@@ -51,14 +53,14 @@ export default async function handler(req, res) {
                     buildingType, 
                     adoption, 
                     renting, 
-                    status, 
                     }
                 })
-            res.json(application)
+            console.log("Application created successfully", application)
+            res.json({ message: "Application submitted successfully" })
 
         } catch (error) {
             console.log("Failed to create application ", error)
-            res.json({ message : "Application creation failed" })
+            res.json({ message : "Application submission failed" })
         }
     }
 

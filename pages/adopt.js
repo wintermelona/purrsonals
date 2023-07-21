@@ -4,14 +4,30 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Radio } from "@material-tailwind/react";
 import { useEffect, useState } from 'react';
+import { getSession, useSession } from 'next-auth/react';
 
 export default function Adopt() {
+    
+
     const [cats, setCats] = useState([])
+    const [adoptee, setAdoptee] = useState("") // Selected cat
+    const [firstName, setFirstName] = useState("")
+    const [lastName, setLastName] = useState("")
+    const [address, setAddress] = useState("")
+    const [phone, setPhone] = useState("")
+    const [email, setEmail] = useState("")
+    const [occupation, setOccupation] = useState("")
+    const [history, setHistory] = useState(false)
+    const [description, setDescription] = useState("")
+    const [buildingType, setBuildingType] = useState("")
+    const [renting, setRenting] = useState(false)
+
     useEffect(() => {
         getCats()
+        getUserEmail()
     }, [])
-    // console.log("client ", cats)
 
+    // Could put this in a context provider
     const getCats = async () => {
         // e.preventDefault()
         const result = await fetch(`/api/cats`, {
@@ -25,9 +41,37 @@ export default function Adopt() {
         const catsInDb = await result.json()
         // console.log("cats ", catsInDb, "type ", typeof catsInDb)
         setCats(catsInDb)
+        // console.log("cats[0] ", catsInDb[0])
+        setAdoptee(catsInDb[0]?.name)
 
     }
+    const addApplication = async (id, status) => {
+        console.log('STATUS, ', status)
+        const data = await fetch(`/api/application/`, { method: "POST", headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                firstname:firstName,
+                lastname: lastName,
+                adoptee,
+                address,
+                phone,
+                email,
+                occupation,
+                adoption: history,
+                description,
+                renting,
+                buildingType,
+                // status: "Pending",
+            })
+        })
+        const res = await data.json()
+        // console.log(res)
+    }
 
+    async function getUserEmail() {
+        const session = await getSession()
+        setEmail(session?.user?.email || "")
+        // console.log("EMAIL ", email);
+    }
     return (
         <>
             <Head>
@@ -63,13 +107,14 @@ export default function Adopt() {
                         <label className="label">
                             <span className="label-text">Pick the cat you want to adopt</span>
                         </label>
-                        <select className="select bg-gray-100 w-[34rem] mb-5">
+                        <select className="select bg-gray-100 w-[34rem] mb-5" value={adoptee} onChange={(e) => setAdoptee(e.target.value)}>
                             <option disabled selected>Select</option>
-                            {/* TODO */}
-                            <option>Cat1</option>
-                            <option>Cat2</option>
-                            <option>Cat3</option>
+                            {
+                                cats.map((cat, index) => (<option key={index} value={cat.name} >{cat.name}</option>))
+                            }
                         </select>
+                            
+
 
                         <hr />
 
@@ -80,11 +125,15 @@ export default function Adopt() {
 
                             <div className="name flex mb-5 space-x-12">
                                 <div className="grid">
-                                    <input type="text" placeholder="First Name" className="input bg-gray-100 w-[34rem]" />
+                                    <input type="text" placeholder="First Name" className="input bg-gray-100 w-[34rem]" 
+                                    value={firstName} onChange={(e) => setFirstName(e.target.value)}
+                                    />
                                 </div>
 
                                 <div className="grid">
-                                    <input type="text" placeholder="Last Name" className="input bg-gray-100 w-[34rem]" />
+                                    <input type="text" placeholder="Last Name" className="input bg-gray-100 w-[34rem]" 
+                                    value={lastName} onChange={(e) => setLastName(e.target.value)}
+                                    />
                                 </div>
                             </div>
 
@@ -92,7 +141,7 @@ export default function Adopt() {
                                 <label className="label">
                                     <span className="label-text">Address</span>
                                 </label>
-                                <input type="text" className="input bg-gray-100 w-full" />
+                                <input type="text" className="input bg-gray-100 w-full" value={address} onChange={(e) => setAddress(e.target.value)} />
                             </div>
 
                             <div className="name flex mb-5 space-x-12">
@@ -100,14 +149,14 @@ export default function Adopt() {
                                     <label className="label">
                                         <span className="label-text">Phone</span>
                                     </label>
-                                    <input type="text" className="input bg-gray-100 w-[34rem]" />
+                                    <input type="text" className="input bg-gray-100 w-[34rem]" value={phone} onChange={(e) => setPhone(e.target.value)}/>
                                 </div>
 
                                 <div className="grid">
                                     <label className="label">
                                         <span className="label-text">Email</span>
                                     </label>
-                                    <input type="text" className="input bg-gray-100 w-[34rem]" />
+                                    <input type="text" className="input bg-gray-100 w-[34rem]" value={email} onChange={(e) => setEmail(e.target.value)}/>
                                 </div>
                             </div>
 
@@ -116,7 +165,8 @@ export default function Adopt() {
                                     <label className="label">
                                         <span className="label-text">Occupation</span>
                                     </label>
-                                    <input type="text" placeholder="Type N/A if unemployed" className="input bg-gray-100 w-[34rem]" />
+                                    <input type="text" placeholder="Type N/A if unemployed" className="input bg-gray-100 w-[34rem]" 
+                                    value={occupation} onChange={(e) => setOccupation(e.target.value)}/>
                                 </div>
 
                                 <div className="grid">
@@ -124,8 +174,8 @@ export default function Adopt() {
                                         <span className="label-text">Have you adopted before?</span>
                                     </label>
                                     <div className="flex gap-10">
-                                        <Radio id="yes" name="type" label="Yes" />
-                                        <Radio id="no" name="type" label="No" />
+                                        <Radio id="yes" name="history" label="Yes" onClick={() => setHistory(true)} />
+                                        <Radio id="no" name="history" label="No" onClick={() => setHistory(false)}/>
                                     </div>
                                 </div>
                             </div>
@@ -137,7 +187,7 @@ export default function Adopt() {
                             <label className="label">
                                 <span className="label-text">Describe your ideal pet, including its sex, age, appearance, temperament, etc</span>
                             </label>
-                            <textarea className="textarea textarea-bordered bg-gray-100 h-24"></textarea>
+                            <textarea className="textarea textarea-bordered bg-gray-100 h-24" value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
                         </div>
 
                         <div className="name flex mb-5 space-x-[21rem]">
@@ -147,13 +197,13 @@ export default function Adopt() {
                                 </label>
                                 <div className="flex gap-10">
                                     <div className="grid">
-                                        <Radio id="house" name="type" label="House" />
-                                        <Radio id="apartment" name="type" label="Apartment" />
+                                        <Radio id="house" name="building" label="House" onClick={() => setBuildingType("HOUSE")}/>
+                                        <Radio id="apartment" name="building" label="Apartment" onClick={() => setBuildingType("APARTMENT")} />
                                     </div>
 
                                     <div className="grid">
-                                        <Radio id="condo" name="type" label="Condo" />
-                                        <Radio id="other" name="type" label="Other" />
+                                        <Radio id="condo" name="building" label="Condo" onClick={() => setBuildingType("CONDO")} />
+                                        <Radio id="other" name="building" label="Other" onClick={() => setBuildingType("OTHER")} />
                                     </div>
                                 </div>
                             </div>
@@ -163,12 +213,13 @@ export default function Adopt() {
                                     <span className="label-text">Do you rent?</span>
                                 </label>
                                 <div className="flex gap-10">
-                                    <Radio id="yes" name="type" label="Yes" />
-                                    <Radio id="no" name="type" label="No" />
+                                    <Radio id="yes2" name="renting" label="Yes" onClick={() => setRenting(true)}/>
+                                    <Radio id="no2" name="renting" label="No" onClick={() => setRenting(false)}/>
                                 </div>
                             </div>
                         </div>
-                        <button className="bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white font-gilroy px-12 py-3 rounded-full">
+                        <button className="bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white font-gilroy px-12 py-3 rounded-full" 
+                        onClick={addApplication}>
                             Submit
                         </button>
                     </div>

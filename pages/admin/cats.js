@@ -40,6 +40,19 @@ export default function Cats() {
 
 
     const addCatHandler = async () => {
+        if (name && age && sex && description) {
+            setCats((cats) => {
+                return [...cats, {
+                    name,
+                    age,
+                    sex,
+                    description
+                }]
+            });
+            setName('');
+            setAge('');
+            setDescription('');
+        }
         const formData = new FormData();
         formData.append("name", name);
         formData.append("sex", sex);
@@ -141,22 +154,7 @@ export default function Cats() {
                                     <input type="file" className="file-input w-72 mt-2" onChange={e => setImage(e.target.files[0])}/>
                                 </div>
                                 <button className="border-0 bg-[#9cbf62] mt-4 ease-in duration-150 hover:bg-[#8cac58] text-md text-white font-gilroy normal-case h-8 w-20 rounded-full" 
-                                onClick={() => {
-                                    if (name && age && sex && description) {
-                                        setCats((cats) => {
-                                            return [...cats, {
-                                                name,
-                                                age,
-                                                sex,
-                                                description
-                                            }]
-                                        });
-                                        setName('');
-                                        setAge('');
-                                        setDescription('');
-                                    }
-                                    addCatHandler()
-                                }}>Save</button>
+                                onClick={() => addCatHandler()}>Save</button>
                             </form>
                         </dialog>
 

@@ -111,7 +111,7 @@ model Application {
   phone         String?
   email         String
   occupation    String?     @default("N/A")
-  description   String?     
+  description   String?     @db.Text
   buildingType  BuildingType    @default(HOUSE)
   adoption      Boolean     @default(false)
   renting       Boolean     @default(false)

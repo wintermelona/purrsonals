@@ -6,20 +6,10 @@ import { useEffect, useState } from 'react';
 export default function Applications() {
     const [data, setData] = useState([])
     useEffect(() => {
-        getApplication()
+        getApplications()
     }, [])
-    const getApplication = async () => {
+    const getApplications = async () => {
         const data = await fetch('/api/application', {method: "GET", headers: {'Content-Type': 'application/json'}})
-        const res = await data.json()
-        console.log(res)
-        setData(res)
-    }
-    const editApplication = async (id, status) => {
-        const data = await fetch(`/api/application/${id}`, {method: "PATCH", headers: {'Content-Type': 'application/json'},
-            body: {
-                status
-            }
-        })
         const res = await data.json()
         console.log(res)
         setData(res)

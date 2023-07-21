@@ -30,12 +30,12 @@ const AdminApplication = ({...data}) => {
             <p>Phone: {data.phone}</p>
             <p>Email: {data.email} </p>
             <p>Occupation: {data.occupation} </p>
-            <p>Adopted before?: {data.adoption} </p>
+            <p>Adopted before?: {data.adoption ? "Yes" : "No"} </p>
             <div className="divider" />
             <p>Cat to be adopted: {data.adoptee} </p>
             <p>Describe ideal cat: {data.description}</p>
             <p>Type of building: {data.buildingType} </p>
-            <p>Renting?: {data.renting}</p>
+            <p>Renting?: {data.renting ? "Yes" : "No"}</p>
             <div className="w-72 pt-4">
                 <Select label="Status of Application" onChange={(value) => {
                     setStatus(value)
