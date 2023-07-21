@@ -55,6 +55,33 @@ export const authOptions = {
     }
     }),
   ],
+  callbacks: {
+    async session({ session, user, token }) {
+        // console.log("token ", token)
+        // console.log("session ", session)
+        // session.image = token.image
+        if (token) {
+            session.user.role = token.role
+            session.user.bio = token.bio
+        }
+      
+        return session
+    },
+    async jwt({ token }) {
+        // console.log("token ", token)
+        const user = await prisma.user.findUnique({
+            where: {
+                email: token.email
+            }
+        });
+        if (user) {
+            token.role = user.role
+            token.bio = user.bio
+        }
+        
+      return token
+    }
+  },
   secret: process.env.AUTH_SECRET,
   adapter: PrismaAdapter(prisma),
 }

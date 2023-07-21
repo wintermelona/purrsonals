@@ -6,10 +6,21 @@ import {
     Button,
     Avatar,
 } from "@material-tailwind/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { signOut, useSession } from 'next-auth/react';
 
 const AdminNav = () => {
     const [adminName, setAdminName] = useState("Name ni Admin");
+
+    const {data: session, status} = useSession() // need to import this hook if the user session is required
+    useEffect(() => {
+        setAdminName(session?.user?.name)
+    }, [])
+    const handleSignOut = async (e) => {
+    e.preventDefault()
+    await signOut({ callbackUrl: 'http://localhost:3000/' })
+  }
+
 
     return <div className="min-h-screen w-80 bg-[#141429]">
         <div className="flex nav-side px-16 py-12 flex-col justify-between h-full">
@@ -51,6 +62,7 @@ const AdminNav = () => {
                         <div className="flex flex-col text-left text-md text-[#a3a6b7]">
                             <p className="font-gilroy">{adminName}</p>
                             <p className="font-gilroyLight">ADMIN</p>
+                            <p className="font-gilroyLight">{ status === "authenticated" ? "AUTHENTICATED": "NOT AUTHENTICATED"}</p>
                         </div>
 
                     </Button>
@@ -58,7 +70,7 @@ const AdminNav = () => {
                 <PopoverContent className="w-44 h-18 p-2">
                     <ul className="menu p-0 font-gilroyLight">
                         <li><a href='/admin/profile'>Profile</a></li>
-                        <li><a>Logout</a></li>
+                        <li><button onClick={(e) => handleSignOut(e)}>Logout</button></li>
                     </ul>
                 </PopoverContent>
             </Popover>
