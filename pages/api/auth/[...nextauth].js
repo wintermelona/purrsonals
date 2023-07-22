@@ -27,7 +27,7 @@ export const authOptions = {
         //  Auth logic here
         console.log("{email, password}", email, password)
 
-        if(!email || !password) {
+            if(!email || !password) {
               throw new Error('Please enter an email and password')
             }
 
@@ -56,18 +56,34 @@ export const authOptions = {
     }),
   ],
   callbacks: {
-    async session({ session, user, token }) {
+    async session({ session, user, token, trigger}) {
         // console.log("token ", token)
         // console.log("session ", session)
         // session.image = token.image
         if (token) {
             session.user.role = token.role
             session.user.bio = token.bio
+            session.user.name = token.name
+            session.user.image = token.image 
+            // session.user.email = token.email 
         }
+
       
         return session
     },
-    async jwt({ token }) {
+    async jwt({ token, session, trigger }) {
+
+
+        // console.log("{ token, session, trigger }",  token, session, trigger )
+        if (trigger === "update"){
+            token.name = session?.name
+            token.bio = session?.bio
+            // token.email = session?.email
+            token.image = session?.image
+
+        }   
+
+
         // console.log("token ", token)
         const user = await prisma.user.findUnique({
             where: {
@@ -75,8 +91,10 @@ export const authOptions = {
             }
         });
         if (user) {
-            token.role = user.role
-            token.bio = user.bio
+            token = {...token,  
+                role : user.role,
+                bio : user.bio,
+            }
         }
         
       return token

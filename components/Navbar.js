@@ -354,7 +354,7 @@ const Navbar = () => {
                     </label>
                     <h1 className="text-center">Dyne Andrei A. <br />
                       09064114130</h1>
-                  </div>
+                  </div>f
 
                   <div className="pt-4">
                     <Input label="Amount" />
