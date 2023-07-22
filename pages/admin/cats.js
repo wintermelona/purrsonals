@@ -8,6 +8,57 @@ import {
 } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 
+function EditCat({ cat, onSubmit }) {
+    const [name, setName] = useState(cat.name);
+    const [sex, setSex] = useState(cat.sex);
+    const [age, setAge] = useState(cat.age);
+    const [description, setDescription] = useState(cat.description);
+    const [image, setImage] = useState(cat.image);
+
+    return <dialog id="edit_cat_modal" className="modal">
+        <form method="dialog" className="modal-box bg-white w-auto">
+            <button className="btn btn-sm btn-circle btn-ghost text-[#4B4B4B] absolute right-2 top-2">✕</button>
+            <h1 className="text-[#4B4B4B] text-sm">Edit Cat Details</h1>
+            <div className="w-72 my-5">
+                <Input label="Name" value={name} onChange={(e) => {
+                    setName(e.target.value);
+                }} />
+            </div>
+
+            <div className="w-72 mb-5">
+                <Input label="Age" value={age} onChange={(e) => {
+                    setAge(e.target.value);
+                }} />
+            </div>
+
+            <label className="text-[#4B4B4B] ">Sex</label>
+            <div className="flex gap-10 mb-5">
+                <Radio id="male" name="type" label="Male" onClick={() => setSex("Male")} />
+                <Radio id="female" name="type" label="Female" onClick={() => setSex("Female")} />
+            </div>
+
+            <div className="w-72 mb-5">
+                <Textarea label="Description" value={description} onChange={(e) => {
+                    setDescription(e.target.value);
+                }} />
+            </div>
+
+            <label className="text-[#4B4B4B]">Upload a photo</label>
+            <div>
+                <input type="file" className="file-input w-72 mt-2" onChange={e => setImage(e.target.files[0])} />
+            </div>
+            <button className="border-0 bg-[#9cbf62] mt-4 ease-in duration-150 hover:bg-[#8cac58] text-md text-white font-gilroy normal-case h-8 w-20 rounded-full"
+                onClick={() => onSubmit({
+                    name,
+                    sex,
+                    age,
+                    description,
+                    image
+                })}>Save</button>
+        </form>
+    </dialog>
+}
+
 export default function Cats() {
     const [cats, setCats] = useState([]);
     const [name, setName] = useState("");
@@ -16,6 +67,9 @@ export default function Cats() {
     const [description, setDescription] = useState("");
     const [deleteMode, setDeleteMode] = useState(false);
     const [image, setImage] = useState("")
+
+    const [editMode, seteditMode] = useState(true);
+    const [editingCat, setEditingCat] = useState();
     //const [search, setSearch] = useState('')
 
     useEffect(() => {
@@ -28,8 +82,8 @@ export default function Cats() {
         const result = await fetch(`/api/cats`, {
             method: "GET",
             headers: {
-            "Content-Type": "application/json",
-            // 'Content-Type': 'application/x-www-form-urlencoded',
+                "Content-Type": "application/json",
+                // 'Content-Type': 'application/x-www-form-urlencoded',
             }
         });
         console.log(result)
@@ -66,29 +120,33 @@ export default function Cats() {
         })
     }
 
+    const editCatHandler = (cat) => {
+        setEditingCat(cat);
+        window.edit_cat_modal?.showModal()
+    }
+
     const deleteCatHandler = async (cat) => {
+        const confirmed = window.confirm(`Are you sure you want to delete ${cat.name}?`);
+        if (!confirmed) {
+            return; 
+        }
 
         if (deleteMode) {
             setCats((cats) => {
-                // stands for cat, kasi kapag cat ginamit ko, magcconflict siya
-                return cats.filter((c) => {
-                    // if (c == cat) {
-                    //     console.log("cat to be deleted ", c.name)
-                    // } // wala lang to note ko lang sya
-                    return c !== cat
-                });
-            })
+                return cats.filter((c) => c !== cat);
+            });
             setDeleteMode(false);
+            seteditMode(true);
         }
+
         const result = await fetch(`/api/cats/${cat.id}`, {
             method: "DELETE",
             headers: {
-            "Content-Type": "application/json",
-            }
+                "Content-Type": "application/json",
+            },
         });
-        // console.log("deleted ", await result.json())
-        
-    }
+    };
+
     return (
         <>
             <Head>
@@ -151,10 +209,10 @@ export default function Cats() {
 
                                 <label className="text-[#4B4B4B]">Upload a photo</label>
                                 <div>
-                                    <input type="file" className="file-input w-72 mt-2" onChange={e => setImage(e.target.files[0])}/>
+                                    <input type="file" className="file-input w-72 mt-2" onChange={e => setImage(e.target.files[0])} />
                                 </div>
-                                <button className="border-0 bg-[#9cbf62] mt-4 ease-in duration-150 hover:bg-[#8cac58] text-md text-white font-gilroy normal-case h-8 w-20 rounded-full" 
-                                onClick={() => addCatHandler()}>Save</button>
+                                <button className="border-0 bg-[#9cbf62] mt-4 ease-in duration-150 hover:bg-[#8cac58] text-md text-white font-gilroy normal-case h-8 w-20 rounded-full"
+                                    onClick={() => addCatHandler()}>Save</button>
                             </form>
                         </dialog>
 
@@ -166,15 +224,31 @@ export default function Cats() {
                         </button>
                     </div>
 
-
                     <div className="flex w-full flex-wrap">
                         {cats.map((cat, idx) => {
-                            // idx=index
-                            return <div key={idx} onClick={() => deleteCatHandler(cat)}>
-                                <CatProf cat={cat} deleteMode={deleteMode} />
-                            </div>
+                            return (
+                                <div key={idx}>
+                                    <CatProf
+                                        cat={cat}
+                                        deleteMode={deleteMode}
+                                        onDelete={() => deleteCatHandler(cat)}
+                                        editMode={editMode}
+                                        onEdit={() => editCatHandler(cat)}
+                                    />
+                                </div>
+                            );
                         })}
                     </div>
+
+                    {editingCat && <EditCat cat={editingCat} onSubmit={(newCat) => {
+                        setCats(cats.map((cat) => {
+                            if (editingCat === cat) {
+                                return newCat;
+                            } 
+
+                            return cat;
+                        }))
+                    }} />}
                 </div>
             </div>
         </>
