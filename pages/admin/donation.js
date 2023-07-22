@@ -1,8 +1,19 @@
 import Head from 'next/head';
 import AdminNav from '@/components/AdminNav';
 import AdminDonation from '@/components/AdminDonation'
+import { useEffect, useState } from 'react';
 
-export default function donation() {
+export default function Donation() {
+    const [donations, setDonations] = useState([])
+    useEffect(() => {
+        getDonations()
+    }, [])
+    const getDonations = async () => {
+        const data = await fetch('/api/donations', {method: "GET", headers: {'Content-Type': 'application/json'}})
+        const res = await data.json()
+        setDonations(res)
+        console.log("Donations ", donations)
+    }
     return (
         <>
             <Head>
@@ -29,7 +40,11 @@ export default function donation() {
                             </svg>
                         </button>
                     </div>
-                    <AdminDonation />
+                    {
+                        donations.map((donation) => 
+                           (<AdminDonation {...donation} key={donation.id}/>)
+                        )
+                    }
                 </div>
             </div>
         </>

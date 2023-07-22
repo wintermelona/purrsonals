@@ -124,3 +124,19 @@ model Application {
   @@index([userId])
   @@unique([id])  
 }
+
+model Donation {
+  id            String      @id @default(cuid())
+  name          String  
+  email         String?
+  // phone         String?
+  amount        String
+  referenceNumber    String?
+  gCashNumber    String?
+  cardNumber    String?
+  type          String
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  
+  @@unique([id])  
+}

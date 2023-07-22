@@ -1,20 +1,36 @@
-import { Select, Option } from "@material-tailwind/react";
+import { useEffect, useState } from "react";
 
-const AdminDonation = () => {
-    return <div className="collapse collapse-arrow bg-white border-[#efeeee] border-2 w-full">
+const AdminDonation = ({...donation}) => {
+    console.log("DATA", donation)
+
+    return <>
+    <div className="collapse collapse-arrow bg-white border-[#efeeee] border-2 w-full">
         <input type="checkbox" />
         <div className="collapse-title text-md">
-            Donation ID
-            <div className="badge bg-[#9cbf62] border-0 text-white ml-2">Card/GCash</div>
+            Donation ID: {donation.id}
+            <div className="badge bg-[#9cbf62] border-0 text-white ml-2 capitalize">{donation.type}</div>
         </div>
         <div className="collapse-content">
-            <h1>Amount:</h1>
-            <h1>Email Address:</h1>
-            <h1>Card Number:</h1>
-            <h1>Expires:</h1>
-            <h1>CVC:</h1>
-            <h1>Holder Name:</h1>
+       {
+        (donation.type === "card" ? (
+            <div>
+                <h1>Holder Name: {donation.name}</h1>
+                <h1>Email Address: {donation.email} </h1>
+                <h1>Amount: {donation.amount}</h1>
+                <h1>Card Number: {donation.cardNumber}</h1>
+            </div>
+            ) : (
+            <div>
+                <h1>Gcash Holder Name: {donation.name}</h1>
+                <h1>Amount:{donation.amount}</h1>
+                <h1>Reference Number:{donation.referenceNumber}</h1>
+                <h1>Gcash Number:{donation.gCashNumber}</h1>
+            </div>
+            )
+        )
+        }
         </div>
     </div>
+    </>
 };
 export default AdminDonation

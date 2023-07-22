@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import { signOut, useSession } from 'next-auth/react';
 
 const AdminNav = () => {
-    const [adminName, setAdminName] = useState("Name ni Admin");
+    const [adminName, setAdminName] = useState("");
 
     const {data: session, status} = useSession() // need to import this hook if the user session is required
     useEffect(() => {
@@ -58,11 +58,11 @@ const AdminNav = () => {
             <Popover>
                 <PopoverHandler>
                     <Button variant="outlined" className="rounded-full border-0 normal-case bg-transparent hover:bg-white/5 shadown-none flex gap-4 items-center w-52">
-                        <Avatar src="https://upload.wikimedia.org/wikipedia/commons/f/fd/20230630_Huh_Yun-jin_%28LE_SSERAFIM%29.jpg" alt="avatar" />
+                        <Avatar src={session?.user?.image} alt="avatar" />
                         <div className="flex flex-col text-left text-md text-[#a3a6b7]">
                             <p className="font-gilroy">{adminName}</p>
-                            <p className="font-gilroyLight">ADMIN</p>
-                            <p className="font-gilroyLight">{ status === "authenticated" ? "AUTHENTICATED": "NOT AUTHENTICATED"}</p>
+                            <p className="font-gilroyLight">Authorization: {session?.user?.role}</p>
+                            <p className="font-gilroyLight">{ status === "authenticated" ? "Authenticated": "Not Authenticated"}</p>
                         </div>
 
                     </Button>

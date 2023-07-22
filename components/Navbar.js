@@ -12,6 +12,7 @@ import {
   CreditCardIcon,
   LockClosedIcon,
 } from "@heroicons/react/24/solid";
+import Donate from "./Donate";
 
 function formatCardNumber(value) {
   const val = value.replace(/\s+/g, "").replace(/[^0-9]/gi, "");
@@ -54,13 +55,9 @@ const Navbar = () => {
   }
 
   const scrollPosition = useScrollPosition()
-  const [type, setType] = React.useState("card");
-  const [cardNumber, setCardNumber] = React.useState("");
-  const [cardExpires, setCardExpires] = React.useState("");
-
-  const [name, setName] = React.useState("")
-  const [email, setEmail] = React.useState("")
-  const [password, setPassword] = React.useState("")
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
 
   // const { open, loggedIn } = useContext(something);
 
@@ -96,21 +93,6 @@ const Navbar = () => {
 
     }
     
-  //CARD
-  //const [cardAmount, setCardAmount] = useState();
-  //const [email, setEmail] = useState();
-  //const [cardNumber, setCardNumber] = useState();
-  //const [cardExpire, setCardExpire] = useState();
-  //const [cardCVC, setCardCVC] = useState();
-  //const [cardName, setCardName] = useState();
-
-  //GCASH
-  //const [gcashAmount, setGcashAmount] = useState();
-  //const [refNum, setRefNum] = useState();
-  //const [firstName, setFirstName] = useState();
-  //const [lastName, setLastName] = useState();
-  //const [gcashNum, setGcashNum] = useState();
-
   return <div className={classNames("navbar", scrollPosition > 0 ? 'bg-white shadow' : 'bg-transparent', 'sticky top-0 z-20 transition-all')}>
     <div className="navbar-start ml-4">
       <div className="dropdown">
@@ -254,155 +236,7 @@ const Navbar = () => {
       </div>
     </div>
 
-    <button className="bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white font-aristotelica font-bold text-xl w-44 h-8 pt-2 rounded-full place-content-center"
-      onClick={() => window.my_modal_3.showModal()}>Donate</button>
-    <dialog id="my_modal_3" className="modal">
-      <form method="dialog" className="modal-box bg-white w-auto">
-        <button className="btn btn-sm btn-circle btn-ghost absolute text-[#4B4B4B] right-2 top-3">✕</button>
-        <div className="signin p-5">
-          <div className="text-center">
-            <h1 className="font-bold text-[#4B4B4B] font-gilroy text-4xl">Donate</h1>
-            <h2 className="font-gilroyLight text-[#4B4B4B] text-lg py-5">Lomre lorem lorem lorem</h2>
-          </div>
-          <Tabs value={type} className="overflow-hidden">
-            <Tabs.Header className="relative z-0">
-              <Tabs.Tab value="card" className="font-gilroyLight" onClick={() => setType("card")}>
-                Card
-              </Tabs.Tab>
-              <Tabs.Tab value="gcash" className="font-gilroyLight" onClick={() => setType("gcash")}>
-                GCash
-              </Tabs.Tab>
-            </Tabs.Header>
-            <Tabs.Body
-              className="!overflow-x-hidden !overflow-y-hidden"
-              animate={{
-                initial: {
-                  x: type === "card" ? 400 : -400,
-                },
-                mount: {
-                  x: 0,
-                },
-                unmount: {
-                  x: type === "card" ? 400 : -400,
-                },
-              }}>
-
-              <Tabs.Panel value="card" className="p-0">
-                <div className="pt-2 flex flex-col gap-4">
-
-                  <div className="pt-4">
-                    <Input label="Amount" />
-                  </div>
-
-                  <div className="font-gilroyLight">
-                    <label className="label">
-                      <span className="label-text">Personal Details</span>
-                    </label>
-                    <Input type="email" label="Email Address" />
-                  </div>
-
-                  <div className="pb-4 font-gilroyLight">
-                    <label className="label">
-                      <span className="label-text">Card Details</span>
-                    </label>
-
-                    <Input
-                      label="Card Number"
-                      maxLength={19}
-                      value={formatCardNumber(cardNumber)}
-                      onChange={(event) => setCardNumber(event.target.value)}
-                      icon={
-                        <CreditCardIcon className="h-5 w-5 text-blue-gray-300" />
-                      }
-                    />
-                    <div className="my-4 flex items-center gap-4">
-                      <Input
-                        label="Expires"
-                        maxLength={5}
-                        value={formatExpires(cardExpires)}
-                        onChange={(event) => setCardExpires(event.target.value)}
-                        containerClassName="min-w-[72px]"
-                      />
-                      <Input
-                        label="CVC"
-                        maxLength={4}
-                        containerClassName="min-w-[72px]"
-                      />
-                    </div>
-                    <Input label="Holder Name" />
-                  </div>
-                  <Link href="/">
-                    <button className="grid h-11 w-full bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white text-lg font-gilroy font-bold rounded-md place-content-center">
-                      Donate
-                    </button>
-                  </Link>
-                  <Typography
-                    variant="small"
-                    color="gray"
-                    className="mt-2 flex items-center justify-center gap-2 font-normal opacity-60">
-                    <LockClosedIcon className="-mt-0.5 h-4 w-4" /> Donations are
-                    secure and encrypted
-                  </Typography>
-                </div>
-              </Tabs.Panel>
-
-              <Tabs.Panel value="gcash" className="p-0">
-                <div className="pt-2 flex flex-col gap-4">
-                  <div className="font-gilroyLight">
-                    <label className="label">
-                      <span className="label-text">GCash Details</span>
-                    </label>
-                    <h1 className="text-center">Dyne Andrei A. <br />
-                      09064114130</h1>
-                  </div>f
-
-                  <div className="pt-4">
-                    <Input label="Amount" />
-                  </div>
-
-                  <div className="pb-4 font-gilroyLight">
-                    <label className="label">
-                      <span className="label-text">Donation Details</span>
-                    </label>
-
-                    <Input
-                      label="Reference Number"
-                      maxLength={19}
-                      value={formatCardNumber(cardNumber)}
-                      onChange={(event) => setCardNumber(event.target.value)}
-                    />
-                    <div className="my-4 flex items-center gap-4">
-                      <Input
-                        label="First Name"
-                        containerClassName="min-w-[72px]"
-                      />
-                      <Input
-                        label="Last Name"
-                        containerClassName="min-w-[72px]"
-                      />
-                    </div>
-                    <Input label="GCash Number" />
-                  </div>
-                  <Link href="/">
-                    <button className="grid h-11 w-full bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white text-lg font-gilroy font-bold rounded-md place-content-center">
-                      Donate
-                    </button>
-                  </Link>
-                  <Typography
-                    variant="small"
-                    color="gray"
-                    className="mt-2 flex items-center justify-center gap-2 font-normal opacity-60"
-                  >
-                    <LockClosedIcon className="-mt-0.5 h-4 w-4" /> Donations are
-                    secure and encrypted
-                  </Typography>
-                </div>
-              </Tabs.Panel>
-            </Tabs.Body>
-          </Tabs>
-        </div>
-      </form>
-    </dialog>
+    <Donate />
   </div>
 };
 

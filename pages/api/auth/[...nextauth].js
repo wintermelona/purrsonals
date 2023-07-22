@@ -58,13 +58,13 @@ export const authOptions = {
   callbacks: {
     async session({ session, user, token, trigger}) {
         // console.log("token ", token)
-        // console.log("session ", session)
+        console.log("session ", session)
         // session.image = token.image
         if (token) {
             session.user.role = token.role
             session.user.bio = token.bio
             session.user.name = token.name
-            session.user.image = token.image 
+            session.user.image = token.picture 
             // session.user.email = token.email 
         }
 
@@ -79,7 +79,7 @@ export const authOptions = {
             token.name = session?.name
             token.bio = session?.bio
             // token.email = session?.email
-            token.image = session?.image
+            token.picture = session?.image
 
         }   
 
@@ -91,6 +91,7 @@ export const authOptions = {
             }
         });
         if (user) {
+            // console.log("Initial load token: ", token)
             token = {...token,  
                 role : user.role,
                 bio : user.bio,

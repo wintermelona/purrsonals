@@ -55,7 +55,9 @@ export default function Dashboard() {
                 image: newLink.user.image
                 // test_add : "add"
             }
-        ) 
+        )
+        alert(newLink.message) 
+
     }
 
     const passwordChangeHandler = async () => {

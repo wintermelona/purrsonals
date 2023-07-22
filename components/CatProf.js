@@ -11,7 +11,7 @@ const CatProfile = ({ cat, deleteMode }) => {
             <figure style={{ flex: 'none' }}> 
                 <div className="avatar">
                     <div className="w-24 rounded">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/20230630_Huh_Yun-jin_%28LE_SSERAFIM%29.jpg" />
+                        <img src={cat.image} />
                     </div>
                 </div>
             </figure>

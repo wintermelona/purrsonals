@@ -1,5 +1,4 @@
 // import prisma from '/lib/db';
-import { select } from '@material-tailwind/react'
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 

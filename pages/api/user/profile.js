@@ -60,10 +60,10 @@ export default async function handler(req, res) {
                 where:  { email: email[0] },
                 data
             })
-            console.log("Profile updated successfully", user)
+            console.log("Profile updated successfully", user.name, user.image)
             return res.status(200).json(
                 {
-                    message: "Profile updated created successfully",
+                    message: "Profile updated successfully",
                     user
                 })
         }catch (error){
