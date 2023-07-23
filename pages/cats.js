@@ -68,7 +68,7 @@ export default function Cats() {
                         {/* Cat Cards */}
                         {cats.map((cat, index) => (
                             <div key={index} className="relative block rounded-3xl h-[27rem] w-[22rem] bg-gray-900 group">
-                                <img className="absolute inset-0 h-[27rem] w-[22rem] rounded-3xl group-hover:opacity-50" src={cat.image} />
+                                <img className="absolute inset-0 h-[27rem] w-[22rem] rounded-3xl group-hover:opacity-50" src={cat.image} key={cat.id}/>
                                 <div className="relative p-10">
                                     <div className="transition-all transform translate-y-8 opacity-0 group-hover:opacity-100 group-hover:translate-y-0">
                                         <p className="text-md text-white text-justify pb-3">

@@ -9,6 +9,7 @@ import {
 import { useEffect, useState } from "react";
 
 function EditCat({ cat, onSubmit }) {
+    const [id, setId] = useState(cat.id);
     const [name, setName] = useState(cat.name);
     const [sex, setSex] = useState(cat.sex);
     const [age, setAge] = useState(cat.age);
@@ -49,11 +50,12 @@ function EditCat({ cat, onSubmit }) {
             </div>
             <button className="border-0 bg-[#9cbf62] mt-4 ease-in duration-150 hover:bg-[#8cac58] text-md text-white font-gilroy normal-case h-8 w-20 rounded-full"
                 onClick={() => onSubmit({
+                    id,
                     name,
                     sex,
                     age,
                     description,
-                    image
+                    image,
                 })}>Save</button>
         </form>
     </dialog>
@@ -74,7 +76,7 @@ export default function Cats() {
 
     useEffect(() => {
         getCats()
-    }, [])
+    }, [image])
     // console.log("client ", cats)
 
     const getCats = async () => {
@@ -94,19 +96,7 @@ export default function Cats() {
 
 
     const addCatHandler = async () => {
-        if (name && age && sex && description) {
-            setCats((cats) => {
-                return [...cats, {
-                    name,
-                    age,
-                    sex,
-                    description
-                }]
-            });
-            setName('');
-            setAge('');
-            setDescription('');
-        }
+
         const formData = new FormData();
         formData.append("name", name);
         formData.append("sex", sex);
@@ -117,12 +107,55 @@ export default function Cats() {
         const result = await fetch('/api/cats/', {
             method: "POST",
             body: formData
-        })
+        }).then((res) =>  res.json())
+        
+        console.log("result ", result)
+
+        if (name && age && sex && description) {
+            setCats((cats) => {
+                return [...cats, {
+                    name,
+                    age,
+                    sex,
+                    description,
+                    image: result.image
+                }]
+            });
+            setName('');
+            setAge('');
+            setDescription('');
+            setImage('');
+        }
+
+        alert(result.message)
     }
 
     const editCatHandler = (cat) => {
         setEditingCat(cat);
         window.edit_cat_modal?.showModal()
+    }
+
+    const saveEditedCat = async (cat) => {
+        const formData = new FormData();
+        formData.append("name", cat.name);
+        formData.append("sex", cat.sex);
+        formData.append("age", cat.age);
+        formData.append("description", cat.description);
+        formData.append("image", cat.image);
+        console.log("image", image)
+        console.log('form data ', Object.fromEntries(formData))
+        const result = await fetch(`/api/cats/${cat.id}`, {
+            method: "PATCH",
+            body: formData
+        })
+
+        const res = await result.json() // get updated cat image link from cloudinary
+        console.log("res ", res)
+        setName('');
+        setAge('');
+        setDescription('');
+        alert(res.message)
+        return res.image
     }
 
     const deleteCatHandler = async (cat) => {
@@ -242,11 +275,16 @@ export default function Cats() {
 
                     {editingCat && <EditCat cat={editingCat} onSubmit={(newCat) => {
                         setCats(cats.map((cat) => {
+                            // console.log("cat", cat)
                             if (editingCat === cat) {
-                                return newCat;
+                                // console.log("newimagelink ",  newImageLink);
+                                // newCat.image = newImageLink
+                                console.log("newcat", newCat)
+                                // Some voodoo going on here im sorry
+                                const newImageLink = saveEditedCat(newCat).then(() => newCat).catch((error) => console.log("Something went wrong: newCat"))
                             } 
-
                             return cat;
+                        
                         }))
                     }} />}
                 </div>
