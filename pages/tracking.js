@@ -2,8 +2,30 @@ import Head from 'next/head';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Select, Option } from "@material-tailwind/react";
+import { useSession } from 'next-auth/react';
+import { useEffect, useState } from 'react';
+import Application from '@/components/Application';
 
 export default function Adopt() {
+    const [applications, setApplications] = useState([])
+    const { data: session, status } = useSession()
+    
+    
+    useEffect(() => {
+      getUserApplications()
+    }, [session])
+    
+    async function getUserApplications() {
+        console.log("session.user.email", session)
+        const res = await fetch(`api/application/${session?.user?.email}`, {
+            method: "GET",
+        })
+        const result = await res.json()
+        console.log("result ", result, typeof result.applications)
+        setApplications(result.applications)
+        console.log("APPS ", applications)
+    }
+
     return (
         <>
             <Head>
@@ -14,25 +36,11 @@ export default function Adopt() {
             <Navbar />
 
             <div className="m-10 h-screen">
-                <div className="collapse collapse-arrow bg-white border-[#efeeee] border-2 w-full">
-                    <input type="checkbox" />
-                    <div className="collapse-title text-md">
-                        Application ID
-                        <div className="badge bg-[#9cbf62] border-0 text-white ml-2">Status</div>
-                    </div>
-                    <div className="collapse-content">
-                        <p>Name: </p>
-                        <p>Address: </p>
-                        <p>Phone: </p>
-                        <p>Email: </p>
-                        <p>Occupation: </p>
-                        <p>Adopted before?: </p>
-                        <div className="divider" />
-                        <p>Describe ideal cat: </p>
-                        <p>Type of building: </p>
-                        <p>Renting?: </p>
-                    </div>
-                </div>
+                 {
+                    applications?.map((application, id) => (
+                        <Application {...application} key={id} editable={false} />
+                ))
+            }
             </div>
             <Footer />
         </>

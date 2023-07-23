@@ -25,7 +25,7 @@ export const authOptions = {
     async authorize(credentials, req) {
         const {email, password} = credentials
         //  Auth logic here
-        console.log("{email, password}", email, password)
+        // console.log("{email, password}", email, password)
 
             if(!email || !password) {
               throw new Error('Please enter an email and password')
@@ -58,7 +58,7 @@ export const authOptions = {
   callbacks: {
     async session({ session, user, token, trigger}) {
         // console.log("token ", token)
-        console.log("session ", session)
+        // console.log("session ", session)
         // session.image = token.image
         if (token) {
             session.user.role = token.role

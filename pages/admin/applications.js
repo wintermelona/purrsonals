@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import AdminNav from '@/components/AdminNav';
-import AdminApplication from '@/components/AdminApplication'
 import { useEffect, useState } from 'react';
+import Application from '@/components/Application';
 
 export default function Applications() {
     const [data, setData] = useState([])
@@ -42,7 +42,7 @@ export default function Applications() {
                     </div>
                     {
                         data.map((application, index) => {
-                            return <AdminApplication {...application} key={index}/>
+                            return <Application {...application} key={index} editable={true}/>
                         })
                     }
                 </div> 
