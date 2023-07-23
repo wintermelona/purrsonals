@@ -11,7 +11,7 @@ export default function Applications() {
     const getApplications = async () => {
         const data = await fetch('/api/application', {method: "GET", headers: {'Content-Type': 'application/json'}})
         const res = await data.json()
-        console.log(res)
+        // console.log(res)
         setData(res)
     }
     return (

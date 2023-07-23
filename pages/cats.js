@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 
 export default function Cats() {
     const [cats, setCats] = useState([])
-    console.log("client ", cats)
+    // console.log("client ", cats)
     useEffect(() => {
         getCats()
     }, [])
@@ -21,7 +21,7 @@ export default function Cats() {
                 // 'Content-Type': 'application/x-www-form-urlencoded',
             }
         });
-        console.log(result)
+        // console.log(result)
         const catsInDb = await result.json()
         // console.log("cats ", catsInDb, "type ", typeof catsInDb)
         setCats(catsInDb)

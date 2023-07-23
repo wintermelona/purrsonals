@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const AdminDonation = ({...donation}) => {
-    console.log("DATA", donation)
+    // console.log("DATA", donation)
 
     return <>
     <div className="collapse collapse-arrow bg-white border-[#efeeee] border-2 w-full">

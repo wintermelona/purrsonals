@@ -99,7 +99,10 @@ export const authOptions = {
         }
         
       return token
-    }
+    },
+  },
+  pages: {
+    signIn: "/",
   },
   secret: process.env.AUTH_SECRET,
   adapter: PrismaAdapter(prisma),

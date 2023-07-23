@@ -12,7 +12,7 @@ export default async function handler(req, res) {
         console.log("meail ", email)
         // const {email} = req.body
         try {
-            const applications = await prisma.user.findUnique({
+            const user = await prisma.user.findUnique({
                 where: {
                     email
                 }, 
@@ -20,8 +20,11 @@ export default async function handler(req, res) {
                     applications: true,
                 }
             })
-            console.log("User applications found. ")
-            return res.json({ message: "User applications found successfully", ...applications })
+            console.log("User found. ")
+            if(user.applications.length <= 0) {
+                throw new Error("No user applications.")
+            }
+            return res.json({ message: "User applications found successfully", ...user })
         } catch (error) {
             console.log("No user applications found. ", error)
             return res.json({ message: "No user applications found." })

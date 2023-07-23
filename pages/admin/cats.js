@@ -88,7 +88,7 @@ export default function Cats() {
                 // 'Content-Type': 'application/x-www-form-urlencoded',
             }
         });
-        console.log(result)
+        // console.log(result)
         const catsInDb = await result.json()
         // console.log("cats ", catsInDb, "type ", typeof catsInDb)
         setCats(catsInDb)
@@ -103,13 +103,13 @@ export default function Cats() {
         formData.append("age", age);
         formData.append("description", description);
         formData.append("image", image);
-        console.log("image", image)
+        // console.log("image", image)
         const result = await fetch('/api/cats/', {
             method: "POST",
             body: formData
         }).then((res) =>  res.json())
         
-        console.log("result ", result)
+        // console.log("result ", result)
 
         if (name && age && sex && description) {
             setCats((cats) => {
@@ -142,15 +142,15 @@ export default function Cats() {
         formData.append("age", cat.age);
         formData.append("description", cat.description);
         formData.append("image", cat.image);
-        console.log("image", image)
-        console.log('form data ', Object.fromEntries(formData))
+        // console.log("image", image)
+        // console.log('form data ', Object.fromEntries(formData))
         const result = await fetch(`/api/cats/${cat.id}`, {
             method: "PATCH",
             body: formData
         })
 
         const res = await result.json() // get updated cat image link from cloudinary
-        console.log("res ", res)
+        // console.log("res ", res)
         setName('');
         setAge('');
         setDescription('');
@@ -279,7 +279,7 @@ export default function Cats() {
                             if (editingCat === cat) {
                                 // console.log("newimagelink ",  newImageLink);
                                 // newCat.image = newImageLink
-                                console.log("newcat", newCat)
+                                // console.log("newcat", newCat)
                                 // Some voodoo going on here im sorry
                                 const newImageLink = saveEditedCat(newCat).then(() => newCat).catch((error) => console.log("Something went wrong: newCat"))
                             } 

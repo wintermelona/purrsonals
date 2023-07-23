@@ -5,6 +5,8 @@ import React, { useState, useContext } from "react";
 import {signIn, signOut, useSession} from 'next-auth/react';
 import {  Input, Typography, Tabs, } from "@material-tailwind/react";
 import {  CreditCardIcon, LockClosedIcon, } from "@heroicons/react/24/solid";
+import { useRouter } from "next/router";
+import { redirect } from 'next/navigation'
 
 function formatCardNumber(value) {
   const val = value.replace(/\s+/g, "").replace(/[^0-9]/gi, "");
@@ -34,6 +36,8 @@ function formatExpires(value) {
 
 
 const Donate = () => {
+    const router = useRouter()
+
     const [type, setType] = useState("card");
     const [cardExpires, setCardExpires] = useState("");
 
@@ -73,13 +77,23 @@ const Donate = () => {
                 gcashNum
             }
         }
-        console.log('data, ', data)
+        // console.log('data, ', data)
         const result = await fetch(`/api/donations`, { method: "POST", headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(
                 data
             )
         })
         const res = await result.json()
+        setCardAmount("")
+        setEmail("")
+        setCardNumber("")
+        setCardName("")
+        setGcashAmount("")
+        setRefNum("")
+        setFirstName("")
+        setLastName("")
+        setGcashNum("")
+
         alert(res.message)
     // console.log(res)
 }
@@ -182,7 +196,7 @@ const Donate = () => {
                     </label>
                     <h1 className="text-center">Dyne Andrei A. <br />
                       09064114130</h1>
-                  </div>f
+                  </div>
 
                   <div className="pt-4">
                     <Input label="Amount" value={gcashAmount} onChange={(e) => setGcashAmount(e.target.value)} />{}

@@ -12,7 +12,7 @@ export default function Donation() {
         const data = await fetch('/api/donations', {method: "GET", headers: {'Content-Type': 'application/json'}})
         const res = await data.json()
         setDonations(res)
-        console.log("Donations ", donations)
+        // console.log("Donations ", donations)
     }
     return (
         <>

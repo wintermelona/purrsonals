@@ -1,7 +1,7 @@
 import Link from "next/link";
 import useScrollPosition from '@/hooks/useScrollPosition';
 import { InformationCircleIcon } from "@heroicons/react/24/solid";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {signIn, signOut, useSession} from 'next-auth/react';
 import {
   Input,
@@ -13,6 +13,7 @@ import {
   LockClosedIcon,
 } from "@heroicons/react/24/solid";
 import Donate from "./Donate";
+import { useRouter } from "next/router";
 
 function formatCardNumber(value) {
   const val = value.replace(/\s+/g, "").replace(/[^0-9]/gi, "");
@@ -41,15 +42,31 @@ function formatExpires(value) {
 }
 
 const Navbar = () => {
+  
+  const router = useRouter()
+
+  // console.log(router.pathname, router.asPath)
 
   // Get session data from NextAuth, see https://next-auth.js.org/getting-started/client#usesession
   // Session has user object with {name, email...} 
   // Can use status to check if a user is authenticated. Status can be {"authenticated", "unauthenticated"}
   const {data: session, status} = useSession() // need to import this hook if the user session is required
 
-  console.log("session", session, "status ", status) // browser debugging, also renders server side for some reason
+  // console.log("session", session, "status ", status) // browser debugging, also renders server side for some reason
 
+  useEffect(() => {
+        if(router.asPath.includes('callbackUrl') && router.asPath.includes('admin')){
+        // console.log("session ", session)
 
+          if(session === null) {
+            alert('Unauthorized access. Please log in.')
+          }
+          
+          if(session?.user?.role === "USER") {
+            alert('Unauthorized access. Please log in with an admin account.')
+          }
+      }
+  }, [session])
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
   }
@@ -58,6 +75,21 @@ const Navbar = () => {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+
+
+    useEffect(() => {
+
+
+    if(router.asPath.includes('adopt') && status === "unauthenticated"){
+      if (scrollPosition > 600 ) {
+        window.my_modal_1.close()
+        window.my_modal_1.showModal()
+      }
+      // alert(scrollPosition)
+
+    }
+
+  }, [scrollPosition])
 
   // const { open, loggedIn } = useContext(something);
 
@@ -89,9 +121,14 @@ const Navbar = () => {
       // console.log(result)
       const body = await result.json()
       // console.log(body)
-      alert(JSON.stringify(body.message))
+      alert(body.message)
+      setName("")
+      setEmail("")
+      setPassword("")
+      router.replace("/")
 
-    }
+  }
+
     
   return <div className={classNames("navbar", scrollPosition > 0 ? 'bg-white shadow' : 'bg-transparent', 'sticky top-0 z-20 transition-all')}>
     <div className="navbar-start ml-4">
@@ -140,7 +177,7 @@ const Navbar = () => {
         {status ===  "authenticated" ? (
           <h1> {session.user.name} </h1>
         ) : (
-          <h2> Please log in </h2>
+          <h2> Login </h2>
         )}
         
         <div tabIndex={0} className="mt-3 card card-compact dropdown-content w-52 bg-white shadow-xl">
@@ -164,7 +201,7 @@ const Navbar = () => {
                     onClick={() => window.my_modal_1.showModal()}>Login</button>
                     <dialog id="my_modal_1" className="modal">
                       <form method="dialog" className="modal-box bg-white w-auto">
-                        <button className="btn btn-sm btn-circle btn-ghost absolute text-[#4B4B4B] right-2 top-3">✕</button>
+                        <button className="btn btn-sm btn-circle btn-ghost absolute text-[#4B4B4B] right-2 top-3" onClick={()=> window.my_modal_1.close()}>✕</button>
                         <div className="signin p-5">
                           <div className="text-center">
                             <h1 className="font-bold text-[#4B4B4B] font-gilroy text-4xl">Login</h1>
@@ -179,7 +216,7 @@ const Navbar = () => {
                               <Input type="password" label="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
                             </div>
                           </div>
-                          <Link href="/">
+                          <Link href="/" className="">
                             <button className="grid h-11 w-80 bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white text-lg font-gilroy font-bold rounded-md place-content-center" 
                             onClick={(e) => handleSignIn(e)}
                             >
@@ -187,6 +224,8 @@ const Navbar = () => {
                             </button>
                           </Link>
 
+                        <span className="pt-8 font-gilroyLight">Don&apos;t have an account? <button className="underline text-[#C5996C]" onClick={() => window.my_modal_2.showModal()}>
+                          Register </button> instead</span>
                         </div>
                       </form>
                     </dialog>
@@ -194,7 +233,7 @@ const Navbar = () => {
                       onClick={() => window.my_modal_2.showModal()}>Register</button>
                     <dialog id="my_modal_2" className="modal">
                       <form method="dialog" className="modal-box bg-white w-auto">
-                        <button className="btn btn-sm btn-circle btn-ghost absolute text-[#4B4B4B] right-2 top-3">✕</button>
+                        <button className="btn btn-sm btn-circle btn-ghost absolute text-[#4B4B4B] right-2 top-3" onClick={()=> window.my_modal_2.close()}>✕</button>
                         <div className="signin p-5">
                           <div className="text-center">
                             <h1 className="font-gilroy text-[#4B4B4B] text-4xl">Sign up</h1>
@@ -220,6 +259,8 @@ const Navbar = () => {
                               </button>
                             </Link>
                           </div>
+                          <span className="pt-8 font-gilroyLight">Already have an account? <button className="underline text-[#C5996C]" onClick={() => window.my_modal_1.showModal()}>
+                          Login </button> instead</span>
                         </div>
                       </form>
                     </dialog>
@@ -227,7 +268,6 @@ const Navbar = () => {
                   </>
                 )
               }
-
             </div>
           </div>
         </div>

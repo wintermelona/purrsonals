@@ -5,9 +5,10 @@ import Footer from '@/components/Footer';
 import { Radio } from "@material-tailwind/react";
 import { useEffect, useState } from 'react';
 import { getSession, useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
 
 export default function Adopt() {
-    
+    const router = useRouter()
 
     const [cats, setCats] = useState([])
     const [adoptee, setAdoptee] = useState("") // Selected cat
@@ -46,7 +47,7 @@ export default function Adopt() {
 
     }
     const addApplication = async (id, status) => {
-        console.log('STATUS, ', status)
+        // console.log('STATUS, ', status)
         const data = await fetch(`/api/application/`, { method: "POST", headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 firstname:firstName,
@@ -64,6 +65,19 @@ export default function Adopt() {
             })
         })
         const res = await data.json()
+        alert(res.message)
+        setAdoptee("")
+        setFirstName("")
+        setLastName("")
+        setAddress("")
+        setPhone("")
+        setEmail("")
+        setOccupation("")
+        setHistory("")
+        setDescription("")
+        setBuildingType("")
+        setRenting("")
+        router.replace("/adopt")
         // console.log(res)
     }
 
@@ -156,7 +170,7 @@ export default function Adopt() {
                                     <label className="label">
                                         <span className="label-text">Email</span>
                                     </label>
-                                    <input type="text" className="input bg-gray-100 w-[34rem]" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                                    <input type="text" className="input bg-gray-100 w-[34rem]" disabled value={email} onChange={(e) => setEmail(e.target.value)}/>
                                 </div>
                             </div>
 

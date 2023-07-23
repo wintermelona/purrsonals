@@ -2,19 +2,19 @@ import { Select, Option } from "@material-tailwind/react";
 import { useState } from "react";
 
 const Application = ({editable, ...data}) => {
-    console.log("EDITBALE", editable)
+    // console.log("EDITBALE", editable)
     const [status, setStatus] = useState(data.status);
     // console.log("props", {...data })
 
     const editApplication = async (id, status) => {
-        console.log('STATUS, ', status)
+        // console.log('STATUS, ', status)
         const data = await fetch(`/api/application/${id}`, {method: "PATCH", headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 status
             })
         })
         const res = await data.json()
-        console.log(res)
+        // console.log(res)
         alert(res.message)
     }
 
