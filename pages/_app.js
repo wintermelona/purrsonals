@@ -2,7 +2,6 @@
 import { useState } from "react";
 import UserContext from "../components/UserContext"
 import '../styles/globals.css'
-import "../styles/Quiz.module.css"
 import { SessionProvider } from 'next-auth/react'
 
 function MyApp({ Component, pageProps }) {
@@ -10,7 +9,6 @@ function MyApp({ Component, pageProps }) {
     chosen_need: 0,
     chosen_want: 0,
     chosen_type: 0,
-    chosen_plan: 0,
   });
 
   const [trackState, setTrackState] = useState(0);

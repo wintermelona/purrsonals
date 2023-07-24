@@ -1,6 +1,7 @@
 import React, {useContext} from 'react'
 import UserContext from "../../components/UserContext";
 import Determiner from "./determiner"
+import Link from 'next/link';
 
 const QuizBody = ({
   index = 0,
@@ -77,8 +78,8 @@ const QuizBody = ({
                 <h1 className="main-header">Looking for your Purrmate..</h1>
             </div>
           
-            <div className="question"> 
-              <p className="font-jacques font-bold text-[32px] color-[#343434]">{ label }</p>
+            <div className="question my-5"> 
+              <p className="font-gilroy text-4xl text-[#c4996d]">{ label }</p>
             </div>
 
           <div className="question-container">
@@ -87,7 +88,11 @@ const QuizBody = ({
                   updateState(trackState+1);
                   updateNavigator(trackState, i);
                   }}>
-                      <p>{ choice }</p>
+                    <div className="choices mr-44">
+                        <div className="my-6">
+                        <button className="pl-8 w-full h-14 border-solid border-[1px] border-gray-600 rounded-full text-2xl text-left ease-in duration-150 hover:bg-[#c4996d] hover:text-white hover:border-0 ">{ choice }</button>
+                        </div>
+                      </div>
                   </a>
               })}
           </div>
@@ -100,15 +105,17 @@ const QuizBody = ({
 
     let displayTreatment = treatmentArray.map(object => {
         return(
-            <h2 className='font-jacques text-[72px] text-[#FF8644]'>{object}</h2>
+            <h2 className='font-gilroy text-7xl text-[#c4996d]'>{object}!</h2>
         )
     })
 
     return(
       <div className="quiz-main-container">
-          <h1 className='font-junge text-[24px] text-[#343434]'>Our Suggested Companion</h1>
+          <h1 className='font-junge text-[24px] text-[#343434]'>Your perfect companion is..</h1>
           {displayTreatment}
-          <a href="../purrmate" className="!translate-y-1/2 btn w-[315px] h-[58px] border border-[#000] border-opacity-25 bg-[#ff8644] hover:bg-[#fe7529] hover:border-[#fe7529] text-white text-[27.5px] hover:shadow-lg font-jacques font-normal normal-case py-2 px-4 rounded-full ">Take another quiz</a>
+          <Link href="/purrmate/quiz">
+            <button className="button w-72 h-14 bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white text-2xl font-gilroy rounded-full " onClick={() => { }}>Try purrmate again</button>
+        </Link> 
         
       </div>
   ) 
