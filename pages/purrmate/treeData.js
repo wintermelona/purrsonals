@@ -12,7 +12,8 @@ const treeData = {
                         {
                             "title": "To have great house companions.",
                             "suggestion": "Coco",
-                            "desc": "Coco is a hunter and curious boy. He likes exploring each corners in the house and flexes his hunting agility."
+                            "desc": "Coco is a hunter and curious boy. He likes exploring each corners in the house and flexes his hunting agility.",
+                            "image": "/killercat.png"
                         },
                         {
                             "title": "To help cats in need.",

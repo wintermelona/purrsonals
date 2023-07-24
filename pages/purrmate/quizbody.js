@@ -102,6 +102,8 @@ const QuizBody = ({
   else {
     let values = Determiner()
     let treatmentArray = [...values[4]]
+    let descArray = [...values[5]]
+    let imageArray = [...values[6]]
 
     let displayTreatment = treatmentArray.map(object => {
         return(
@@ -113,6 +115,9 @@ const QuizBody = ({
       <div className="quiz-main-container">
           <h1 className='font-junge text-[24px] text-[#343434]'>Your perfect companion is..</h1>
           {displayTreatment}
+          {descArray}
+          {imageArray}
+          <img src={imageArray}></img>
           <Link href="/purrmate/quiz">
             <button className="button w-72 h-14 bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-white text-2xl font-gilroy rounded-full " onClick={() => { }}>Try purrmate again</button>
         </Link> 
