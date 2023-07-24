@@ -19,10 +19,6 @@ const Determiner = (numForUpdate, numForNavigate, numForNavigateChange) => {
     const typeArrayTitle = treeData.need[trackNum.chosen_need].want[trackNum.chosen_want].type.map(object => {
         return object.title
     })
-    
-    const planArrayTitle = treeData.need[trackNum.chosen_need].want[trackNum.chosen_want].type[trackNum.chosen_type].plan.map(object => {
-        return object.title
-    })
 
     let getWantArray = []
     let getTypeArray = []
@@ -43,21 +39,12 @@ const Determiner = (numForUpdate, numForNavigate, numForNavigateChange) => {
             })
         })
 
-        getPlanArray = getTypeArray.map(object => {
-            return object.map(element => {
-                return element.map(item => {
-                    return item.plan
-                })
-            })
-        })
+        
 
-        getSuggestionArray = getPlanArray.map(object => {
+        getSuggestionArray = getTypeArray.map(object => {
              return object.map(element => {
                  return element.map(item => {
-                     return item.map(thing => {
-                        //thing.suggestion !== undefined ? suggestionList.push(thing.suggestion) :  console.log("Hi")
-                        return thing.suggestion
-                    })
+                    return item.suggestion
                 })
             })
         })
@@ -70,18 +57,11 @@ const Determiner = (numForUpdate, numForNavigate, numForNavigateChange) => {
             return object.type
         })
 
-        getPlanArray = getTypeArray.map(object => {
-            return object.map(element => {
-                return element.plan
-            })
-        })
 
-        getSuggestionArray = getPlanArray.map(object => {
+        getSuggestionArray = getTypeArray.map(object => {
             return object.map(element => {
-                return element.map(item => {
-                    item.suggestion !== undefined ? suggestionList.push(item.suggestion) :  console.log("Hi")
-                    return item.suggestion
-               })
+                element.suggestion !== undefined ? suggestionList.push(element.suggestion) :  console.log("Hi")
+                return element.suggestion
            })
        })
 
@@ -89,30 +69,17 @@ const Determiner = (numForUpdate, numForNavigate, numForNavigateChange) => {
     }
 
     else if(trackState===2){
-        getPlanArray = treeData.need[trackNum.chosen_need].want[trackNum.chosen_want].type.map(object => {
-            return object.plan
-        })
-
-        getSuggestionArray = getPlanArray.map(object => {
-            return object.map(element => {
-                element.suggestion !== undefined ? suggestionList.push(element.suggestion) :  console.log("Hi")
-                return element.suggestion
-            })
-        })
-        expectedTreatmentArray = new Set(suggestionList)
-    }
-
-    else if(trackState===3){
-        getSuggestionArray = treeData.need[trackNum.chosen_need].want[trackNum.chosen_want].type[trackNum.chosen_type].plan.map(object => {
+        getSuggestionArray = treeData.need[trackNum.chosen_need].want[trackNum.chosen_want].type.map(object => {
                 return object.suggestion
         })
 
         expectedTreatmentArray = new Set(getSuggestionArray)
     }
 
-  else if(trackState===4){
-        suggestionList.push(treeData.need[trackNum.chosen_need].want[trackNum.chosen_want].type[trackNum.chosen_type].plan[trackNum.chosen_plan].suggestion)
+  else if(trackState===3){
+        suggestionList.push(treeData.need[trackNum.chosen_need].want[trackNum.chosen_want].type[trackNum.chosen_type].suggestion)
         expectedTreatmentArray = new Set(suggestionList)
+        console.log(expectedTreatmentArray)
     }
     
     //Get question header
@@ -123,7 +90,7 @@ const Determiner = (numForUpdate, numForNavigate, numForNavigateChange) => {
     const questionHeaderArray = [questionHeader1, questionHeader2, questionHeader3, questionHeader4]
     
     //List of choices
-    const questionArray = [needArrayTitle, wantArrayTitle, typeArrayTitle, planArrayTitle]     
+    const questionArray = [needArrayTitle, wantArrayTitle, typeArrayTitle]     
 
     let returnedValues = [trackState, trackNum, questionHeaderArray[trackState], questionArray[trackState], expectedTreatmentArray]
 

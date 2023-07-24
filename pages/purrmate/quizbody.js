@@ -70,7 +70,7 @@ const QuizBody = ({
       })
   }
   
-    if (trackState != 4) {
+    if (trackState != 3) {
     return (
         <div className="quiz-main-container">
             <div className="header-container">
