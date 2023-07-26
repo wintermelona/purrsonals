@@ -110,6 +110,8 @@ const QuizBody = ({
             <img src={imagePath} key={index} alt={`Image ${index}`} className="w-28 h-28 rounded-xl" />
         ));
 
+
+
         let displayTreatment = treatmentArray.map(object => {
             return (
                 <h2 className='font-gilroy text-7xl text-[#c4996d]'>{object}!</h2>
