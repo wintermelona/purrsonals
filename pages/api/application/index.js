@@ -1,10 +1,10 @@
-// import prisma from '/lib/db';
-import { PrismaClient } from '@prisma/client'
-const prisma = new PrismaClient()
+import prisma from '/lib/db';
+// import { PrismaClient } from '@prisma/client'
+// const prisma = new PrismaClient()
 
 export default async function handler(req, res) {
     const { method } = req
-    console.log("METHOD ", method)
+    // console.log("METHOD ", method)
     
     if(method === "GET") {
         try {

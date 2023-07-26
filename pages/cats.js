@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 
 export default function Cats() {
     const [cats, setCats] = useState([])
+    const [counts, setCounts] = useState({})
     // console.log("client ", cats)
     useEffect(() => {
         getCats()
@@ -26,6 +27,19 @@ export default function Cats() {
         // console.log("cats ", catsInDb, "type ", typeof catsInDb)
         setCats(catsInDb)
 
+    }
+
+
+    useEffect(() => {
+        getCounts()
+
+    }, [])
+    
+
+    async function getCounts() {
+        const result = await fetch('/api/counter').then((res) => res.json()).catch((error) => alert(error))
+        // console.log(await result)
+        setCounts(result)
     }
 
     return (
@@ -49,11 +63,11 @@ export default function Cats() {
                         </div>
                         <div className="flex text-center space-x-12">
                             <div className="c1 w-32 h-32 rounded-3xl bg-white flex flex-col justify-center items-center" style={{ boxShadow: '0px 0px 8px 4px rgba(0, 0, 0, 0.08)' }}>
-                                <h1 className="mb-2 text-[#C5996C] text-5xl font-gilroy">XX</h1>
+                                <h1 className="mb-2 text-[#C5996C] text-5xl font-gilroy">{counts.catsMale}</h1>
                                 <p className="text-xl">Male</p>
                             </div>
                             <div className="c2 w-32 h-32 rounded-3xl bg-white flex flex-col justify-center items-center" style={{ boxShadow: '0px 0px 8px 4px rgba(0, 0, 0, 0.08)' }}>
-                                <h5 className="mb-2 text-[#C5996C] text-5xl font-gilroy tracking-tight">XX</h5>
+                                <h5 className="mb-2 text-[#C5996C] text-5xl font-gilroy tracking-tight">{counts.catsFemale}</h5>
                                 <p className="text-xl">Female</p>
                             </div>
                         </div>

@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 
 export default function Donation() {
     const [donations, setDonations] = useState([])
+    const [filter, setFilter] = useState("")
     useEffect(() => {
         getDonations()
     }, [])
@@ -25,7 +26,7 @@ export default function Donation() {
                 <AdminNav />
 
                 <div className="content py-12 px-20 w-full">
-                    <h1 className="font-gilroy text-2xl">Donation Something</h1>
+                    <h1 className="font-gilroy text-2xl">Donations</h1>
                     <div className="buttons space-x-4 mt-5 flex">
                         <div className="relative my-4 flex w-full flex-wrap items-stretch">
                             <input
@@ -42,16 +43,16 @@ export default function Donation() {
                         </button>
                         </div>
 
-                        <select className="select select-bordered border-neutral-300 bg-white w-40 max-w-xs">
-                            <option disabled selected>Filter</option>
-                            <option>Cash</option>
-                            <option>Gcash</option>
+                        <select className="select select-bordered border-neutral-300 bg-white w-40 max-w-xs"  defaultValue={"filter"} onChange={(e) => setFilter(e.target.value)}>
+                            <option disabled value={"filter"}>Filter</option>
+                            <option value={"card"}>Card</option>
+                            <option value={"gcash"}>Gcash</option>
                         </select>
 
                     </div>
                     {
                         donations.map((donation) =>
-                            (<AdminDonation {...donation} key={donation.id} />)
+                            (<AdminDonation {...donation} key={donation.id} filter={filter}/>)
                         )
                     }
                 </div>

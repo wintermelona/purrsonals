@@ -7,7 +7,7 @@ import { getSession, useSession } from 'next-auth/react';
 export default function Dashboard() {
 
     const {data: session, update} = useSession()
-    console.log(" admin in session ", session);
+    // console.log(" admin in session ", session);
 
     
     // Name lang yung nasa initial user register, kaya name lang din nasa db

@@ -97,7 +97,7 @@ const Navbar = () => {
     e.preventDefault()
     const result = await signIn('credentials', {
       email, password,
-      redirect: "/"
+      redirect: "/",
     })
     // console.log("result ", result)
   }
@@ -190,7 +190,7 @@ const Navbar = () => {
                 status === "authenticated" ? (<>
 
                   <button className="bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-xl text-white font-gilroy btn-block rounded-md"
-                    onClick={signOut}>Logout</button>
+                    onClick={() => signOut({ redirect: "/", })}>Logout</button>
 
                   <Link href="/tracking" className="w-full">
                     <button className="bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-xl text-white font-gilroy btn-block rounded-md">Track Status</button>
@@ -226,10 +226,8 @@ const Navbar = () => {
                               </button>
                             </Link>
 
-                            <div className="mt-5 text-center">
-                              <span className="pt-8 font-gilroyLight text-[#4B4B4B]">Don&apos;t have an account? <button className="underline text-[#C5996C]" onClick={() => window.my_modal_2.showModal()}>
-                                Register </button> instead</span>
-                            </div>
+                            <span className="pt-8 font-gilroyLight">Don&apos;t have an account? <button className="underline text-[#C5996C]" onClick={() => window.my_modal_2.showModal()}>
+                              Register </button> instead</span>
                           </div>
                         </form>
                       </dialog>
@@ -263,10 +261,8 @@ const Navbar = () => {
                                 </button>
                               </Link>
                             </div>
-                            <div className="mt-5 text-center">
-                              <span className="pt-8 font-gilroyLight text-[#4B4B4B]">Already have an account? <button className="underline text-[#C5996C]" onClick={() => window.my_modal_1.showModal()}>
-                                Login </button> instead</span>
-                            </div>
+                            <span className="pt-8 font-gilroyLight">Already have an account? <button className="underline text-[#C5996C]" onClick={() => window.my_modal_1.showModal()}>
+                              Login </button> instead</span>
                           </div>
                         </form>
                       </dialog>

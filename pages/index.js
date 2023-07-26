@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Head from 'next/head';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 export default function Index() {
+  const [counts, setCounts] = useState({})
+  useEffect(() => {
+    getCounts()
+
+  }, [])
+  
+
+  async function getCounts() {
+    const result = await fetch('/api/counter').then((res) => res.json()).catch((error) => alert(error))
+    // console.log(await result)
+    setCounts(result)
+  }
 
   return (
     <>
@@ -51,19 +63,19 @@ export default function Index() {
         <div className="card absolute left-1/2 transform -translate-x-1/2 translate-y-1/2 bottom-0 z-0">
           <div className="flex justify-center items-center space-x-10 text-center">
             <div className="c1 w-56 h-44 p-6 rounded-3xl bg-white flex flex-col justify-center items-center" style={{ boxShadow: '0px 0px 10px 10px rgba(0, 0, 0, 0.08)' }}>
-              <h1 className="mb-2 text-[#C5996C] text-7xl font-gilroy">XX</h1>
+              <h1 className="mb-2 text-[#C5996C] text-7xl font-gilroy">{counts.catsTotal}</h1>
               <p className="text-2xl">Cats</p>
             </div>
             <div className="c2 w-56 h-44 p-6 rounded-3xl bg-white flex flex-col justify-center items-center" style={{ boxShadow: '0px 0px 10px 10px rgba(0, 0, 0, 0.08)' }}>
-              <h5 className="mb-2 text-[#C5996C] text-7xl font-gilroy tracking-tight">XX</h5>
+              <h5 className="mb-2 text-[#C5996C] text-7xl font-gilroy tracking-tight">{counts.applicationsDone}</h5>
               <p className="text-2xl">Adopted</p>
             </div>
             <div className="c3 w-56 h-44 p-6 rounded-3xl bg-white flex flex-col justify-center items-center" style={{ boxShadow: '0px 0px 10px 10px rgba(0, 0, 0, 0.08)' }}>
-              <h5 className="mb-2 text-[#C5996C] text-7xl font-gilroy tracking-tight">XX</h5>
+              <h5 className="mb-2 text-[#C5996C] text-7xl font-gilroy tracking-tight">{counts.applicationsOngoing}</h5>
               <p className="text-2xl">Ongoing</p>
             </div>
             <div className="c4 w-56 h-44 p-6 rounded-3xl bg-white flex flex-col justify-center items-center" style={{ boxShadow: '0px 0px 10px 10px rgba(0, 0, 0, 0.08)' }}>
-              <h5 className="mb-2 text-[#C5996C] text-7xl font-gilroy tracking-tight">XX</h5>
+              <h5 className="mb-2 text-[#C5996C] text-7xl font-gilroy tracking-tight">{counts.donationsTotal}</h5>
               <p className="text-2xl">Donations</p>
             </div>
           </div>

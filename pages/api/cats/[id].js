@@ -1,6 +1,6 @@
-// import prisma from '/lib/db';
-import { PrismaClient } from '@prisma/client'
-const prisma = new PrismaClient()
+import prisma from '/lib/db';
+// import { PrismaClient } from '@prisma/client'
+// const prisma = new PrismaClient()
 import path from "path";
 import fs from "fs/promises";
 import cloudinary from 'cloudinary';

@@ -1,8 +1,7 @@
 import bcrypt from 'bcrypt'
-import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient()
-
-// import prisma from '/lib/db';
+import prisma from '/lib/db';
+// import { PrismaClient } from '@prisma/client'
+// const prisma = new PrismaClient()
 
 export default async function handler(req, res) {
     const { email, password, newPassword, confirmPassword } = req.body

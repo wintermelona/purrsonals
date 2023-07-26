@@ -38,7 +38,7 @@ export default function Adopt() {
                 // 'Content-Type': 'application/x-www-form-urlencoded',
             }
         });
-        console.log(result)
+        // console.log(result)
         const catsInDb = await result.json()
         // console.log("cats ", catsInDb, "type ", typeof catsInDb)
         setCats(catsInDb)
@@ -122,7 +122,7 @@ export default function Adopt() {
                             <span className="label-text">Pick the cat you want to adopt</span>
                         </label>
                         <select className="select bg-gray-100 w-[34rem] mb-5" value={adoptee} onChange={(e) => setAdoptee(e.target.value)}>
-                            <option disabled selected>Select</option>
+                            <option disabled value={"select"}>Select</option>
                             {
                                 cats.map((cat, index) => (<option key={index} value={cat.name} >{cat.name}</option>))
                             }

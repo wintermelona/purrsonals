@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
 
-const AdminDonation = ({ ...donation }) => {
+const AdminDonation = ({ filter, ...donation }) => {
   // console.log("DATA", donation)
-
+  const show = filter === "" ? true : filter == donation.type.toLowerCase() // show all (true) if filter is empty, else check the filter conditions
+  // console.log("show ", show, "filter ", typeof filter)
   return (
     <>
-      <div className="collapse collapse-arrow bg-white border-[#efeeee] border-2 w-full">
+      {
+        show ? <div className="collapse collapse-arrow bg-white border-[#efeeee] border-2 w-full">
         <input type="checkbox" />
         <div className="collapse-title text-md flex justify-between">
           <div>
@@ -32,7 +33,9 @@ const AdminDonation = ({ ...donation }) => {
             </div>
           )}
         </div>
-      </div>
+      </div> 
+        : ""
+      }
     </>
   );
 };
