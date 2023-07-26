@@ -1,15 +1,15 @@
-// import prisma from '/lib/db';
+import prisma from '/lib/db';
+// import { PrismaClient } from '@prisma/client'
+// const prisma = new PrismaClient()
 import path from "path";
 import fs from "fs/promises";
 import cloudinary from 'cloudinary';
-import { PrismaClient } from '@prisma/client'
-const prisma = new PrismaClient()
 import readFile from "lib/readFile";
 
 export default async function handler(req, res) {
     // POST cat can parse images
     const { method } = req
-    console.log("METHOD ", method)
+    // console.log("METHOD ", method)
     if(method === "GET") {
         const result = await prisma.cat.findMany()
         const cats = await result

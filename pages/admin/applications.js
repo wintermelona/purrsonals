@@ -2,18 +2,25 @@ import Head from 'next/head';
 import AdminNav from '@/components/AdminNav';
 import { useEffect, useState } from 'react';
 import Application from '@/components/Application';
-
 export default function Applications() {
     const [data, setData] = useState([])
+    const [filter, setFilter] = useState("")
     useEffect(() => {
         getApplications()
-    }, [])
+        // console.log(filter)
+    }, [filter])
     const getApplications = async () => {
         const data = await fetch('/api/application', { method: "GET", headers: { 'Content-Type': 'application/json' } })
         const res = await data.json()
         // console.log(res)
         setData(res)
     }
+
+    const handleSelect = (value) => {
+        setFilter(value)
+        // console.log(filter)
+    }
+
     return (
         <>
             <Head>
@@ -42,17 +49,17 @@ export default function Applications() {
                             </button>
                         </div>
 
-                        <select className="select select-bordered border-neutral-300 bg-white w-40 max-w-xs">
-                            <option disabled selected>Filter</option>
-                            <option>Pending</option>
-                            <option>Screening</option>
-                            <option>Processing</option>
-                            <option>Completed</option>
+                        <select className="select select-bordered border-neutral-300 bg-white w-40 max-w-xs"  defaultValue={"filter"} onChange={(e) => handleSelect(e.target.value)}>
+                            <option disabled value={"filter"}>Filter</option>
+                            <option value={"pending"}>Pending</option>
+                            <option value={"screening"}>Screening</option>
+                            <option value={"processing"}>Processing</option>
+                            <option value={"completed"}>Completed</option>
                         </select>
                     </div>
                     {
                         data.map((application, index) => {
-                            return <Application {...application} key={index} editable={true} />
+                            return <Application {...application} key={index} editable={true} filter={filter}/>
                         })
                     }
                 </div>

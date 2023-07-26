@@ -97,7 +97,7 @@ const Navbar = () => {
     e.preventDefault()
     const result = await signIn('credentials', {
       email, password,
-      redirect: "/"
+      redirect: "/",
     })
     // console.log("result ", result)
   }
@@ -188,7 +188,7 @@ const Navbar = () => {
                 status === "authenticated" ? (<>
                 
                 <button className="bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-xl text-white font-gilroy btn-block rounded-md"
-                onClick={signOut}>Logout</button>
+                onClick={() => signOut({redirect: "/",})}>Logout</button>
                 
                 <Link href="/tracking" className="w-full">
                       <button className="bg-[#C5996C] ease-in duration-150 hover:bg-[#9A7856] text-xl text-white font-gilroy btn-block rounded-md">Track Status</button>

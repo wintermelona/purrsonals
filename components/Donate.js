@@ -216,7 +216,7 @@ const Donate = () => {
                     <div className="my-4 flex items-center gap-4">
                       <Input
                         label="First Name"
-                        containerClassName="min-w-[72px]"
+                        // containerClassName="min-w-[72px]"
                         value={firstName}
                         onChange={(e) => setFirstName(e.target.value)}
                       />
@@ -224,7 +224,7 @@ const Donate = () => {
                         label="Last Name"
                         value={lastName}
                         onChange={(e) => setLastName(e.target.value)}
-                        containerClassName="min-w-[72px]"
+                        // containerClassName="min-w-[72px]"
                       />
                     </div>
                     <Input label="GCash Number" value={gcashNum} onChange={(e) => setGcashNum(e.target.value)} maxLength={11}/>

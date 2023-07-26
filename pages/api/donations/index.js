@@ -1,16 +1,16 @@
-// import prisma from '/lib/db';
-import { PrismaClient } from '@prisma/client'
-const prisma = new PrismaClient()
+import prisma from '/lib/db';
+// import { PrismaClient } from '@prisma/client'
+// const prisma = new PrismaClient()
 
 export default async function handler(req, res) {
     const { method } = req
-    console.log("METHOD ", method)
+    // console.log("METHOD ", method)
     
     if(method === "GET") {
         try {
             const donations = await prisma.donation.findMany()
             // console.log("applications ", applications)
-            console.log("Donations found successfully ", donations)
+            // console.log("Donations found successfully ", donations)
             return res.status(200).json(donations)
         } catch (error) {
             console.log("Failed to find donations ", error)
@@ -57,7 +57,7 @@ export default async function handler(req, res) {
             return res.json({ message: "Donation submitted successfully" })
 
         } catch (error) {
-            console.log("Failed to add donation ", error)
+            // console.log("Failed to add donation ", error)
             return res.json({ message : "Donation submission failed" })
         }
     }

@@ -1,9 +1,9 @@
-// import prisma from '/lib/db';
+import prisma from '/lib/db';
+// import { PrismaClient } from '@prisma/client'
+// const prisma = new PrismaClient()
 import path from "path";
 import fs from "fs/promises";
 import cloudinary from 'cloudinary';
-import { PrismaClient } from '@prisma/client'
-const prisma = new PrismaClient()
 import readFile from "lib/readFile";
 
 export default async function handler(req, res) {

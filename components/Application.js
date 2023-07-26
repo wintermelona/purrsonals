@@ -1,7 +1,7 @@
 import { Select, Option } from "@material-tailwind/react";
 import { useState } from "react";
 
-const Application = ({ editable, ...data }) => {
+const Application = ({ editable, filter = "", ...data }) => {
   const [status, setStatus] = useState(data.status);
 
   const editApplication = async (id, status) => {
@@ -30,12 +30,15 @@ const Application = ({ editable, ...data }) => {
         return "bg-gray-500";
     }
   };
-
+  const show = filter === ""  ? true : filter == data.status.toLowerCase() // show all (true) if filter is empty, else check the filter conditions
+  // console.log("show ", show, "filter ", typeof filter)
   return (
-    <div className="collapse collapse-arrow bg-white border-[#efeeee] border-2 w-full">
+    <>
+    {
+      show ? <div className="collapse collapse-arrow bg-white border-[#efeeee] border-2 w-full">
       <input type="checkbox" />
       <div className="collapse-title text-md flex justify-between items-center">
-        <div>Application ID: {data.id}</div>
+        <div>Application ID: {data.id}</div> {filter == data.status}
         <div
           className={`badge w-24 border-0 text-white ml-2 ${getStatusColorClass(
             status
@@ -84,7 +87,10 @@ const Application = ({ editable, ...data }) => {
           </div>
         )}
       </div>
-    </div>
+    </div> : 
+    ""
+    }
+    </>
   );
 };
 
