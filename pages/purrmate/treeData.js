@@ -17,8 +17,9 @@ const treeData = {
                         },
                         {
                             "title": "To help cats in need.",
-                            "suggestion": "Kumo",
-                            "desc": "Kurmo is a rescued cat who was abandoned by his previous owners when they moved house. He is an incredibly playful and fun-loving companion to have around."
+                            "suggestion": "Kurmo",
+                            "desc": "Kurmo is a rescued cat who was abandoned by his previous owners when they moved house. He is an incredibly playful and fun-loving companion to have around.",
+                            "image": "/bleh.jpg"
                         },
                         {
                             "title": "To have a sweet buddy.",
