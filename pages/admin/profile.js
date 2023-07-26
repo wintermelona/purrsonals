@@ -118,18 +118,18 @@ export default function Dashboard() {
                                 
                                 <Input variant="static" label="Bio" placeholder="Enter your bio here..." value={bio} onChange={(e) => setBio(e.target.value)}/>
 
-                                <div className="divider" />
                                 {/* <span>Email should not be changeable</span> */}
                                 {/* <Input variant="static" label="Email" placeholder="em" disabled value={email} onChange={(e) => setEmail(e.target.value)}/> */}
                                 {/* Parang medj problematic sha if magkasama yung save ng profile and 
                                 yung pag change ng pass kaya sineparate ko 
                                 Di ko na nastyle hehi
                                 */}
+                                <div className="flex gap-5">
                                 <button className="border-0 bg-[#a3a6b7] ease-in duration-150 hover:bg-[#9093a1] text-md text-white font-gilroyLight normal-case h-8 w-40 rounded-md" 
                                 onClick={formHandler}
                                 >
                                 Save</button>
-                                <button className="border-0 bg-[#a3a6b7] ease-in duration-150 hover:bg-[#9093a1] text-md text-white font-gilroyLight normal-case h-8 w-40 rounded-md" onClick={() => window.my_modal_5.showModal()}>
+                                <button className="bg-white  hover:bg-[#a3a6b7] border-[#a3a6b7] border-2 ease-in duration-150 text-md text-[#a3a6b7]  hover:text-white font-gilroyLight normal-case h-8 w-40 rounded-md" onClick={() => window.my_modal_5.showModal()}>
                                     Change Password</button>
                                 <dialog id="my_modal_5" className="modal">
                                     <form method="dialog" className="modal-box bg-white w-auto">
@@ -155,6 +155,7 @@ export default function Dashboard() {
                                             Save</button>
                                     </form>
                                 </dialog>
+                                </div>
                             </div>
                         </div>
                     </div>

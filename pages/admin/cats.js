@@ -72,7 +72,9 @@ export default function Cats() {
 
     const [editMode, seteditMode] = useState(true);
     const [editingCat, setEditingCat] = useState();
-    //const [search, setSearch] = useState('')
+
+    const [searchQuery, setSearchQuery] = useState("");
+    const [searchedCats, setSearchedCats] = useState([]);
 
     useEffect(() => {
         getCats()
@@ -80,20 +82,27 @@ export default function Cats() {
     // console.log("client ", cats)
 
     const getCats = async () => {
-        // e.preventDefault()
         const result = await fetch(`/api/cats`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-            }
+            },
         });
-        // console.log(result)
-        const catsInDb = await result.json()
-        // console.log("cats ", catsInDb, "type ", typeof catsInDb)
-        setCats(catsInDb)
-    }
 
+        const catsInDb = await result.json();
+        setCats(catsInDb);
+
+        if (searchQuery) {
+            const filteredCats = catsInDb.filter((cat) => {
+                return cat.name.toLowerCase().includes(searchQuery.toLowerCase());
+            });
+            setSearchedCats(filteredCats);
+        } else {
+            setSearchedCats(catsInDb);
+        }
+    };
+
+    const filteredCats = searchedCats;
 
     const addCatHandler = async () => {
 
@@ -107,8 +116,8 @@ export default function Cats() {
         const result = await fetch('/api/cats/', {
             method: "POST",
             body: formData
-        }).then((res) =>  res.json())
-        
+        }).then((res) => res.json())
+
         // console.log("result ", result)
 
         if (name && age && sex && description) {
@@ -161,7 +170,7 @@ export default function Cats() {
     const deleteCatHandler = async (cat) => {
         const confirmed = window.confirm(`Are you sure you want to delete ${cat.name}?`);
         if (!confirmed) {
-            return; 
+            return;
         }
 
         if (deleteMode) {
@@ -199,13 +208,28 @@ export default function Cats() {
                                 type="search"
                                 className="relative w-96 rounded-l border border-solid border-neutral-300 bg-white px-3 py-[0.25rem] outline-none text-neutral-700 transition duration-200 ease-in-out focus:border-[#d3d5d7] focus:text-neutral-700 focus:outline-none"
                                 placeholder="Search.."
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
                             />
 
-                            <button className="relative flex items-center rounded-r bg-[#8b9197] px-6 py-2.5 hover:bg-[#7f848a]">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="white" className="h-5 w-5">
-                                    <path fillRule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clipRule="evenodd" />
+                            <button
+                                className="relative flex items-center rounded-r bg-[#8b9197] px-6 py-2.5 hover:bg-[#7f848a]"
+                                onClick={() => getCats()}
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20"
+                                    fill="white"
+                                    className="h-5 w-5"
+                                >
+                                    <path
+                                        fillRule="evenodd"
+                                        d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
+                                        clipRule="evenodd"
+                                    />
                                 </svg>
                             </button>
+
                         </div>
 
                         <button className="btn border-0 bg-[#9cbf62] ease-in duration-150 hover:bg-[#8cac58] text-lg text-white font-gilroy normal-case w-32 rounded-full" onClick={() => window.my_modal_4.showModal()}>
@@ -258,7 +282,7 @@ export default function Cats() {
                     </div>
 
                     <div className="flex w-full flex-wrap">
-                        {cats.map((cat, idx) => {
+                        {filteredCats.map((cat, idx) => {
                             return (
                                 <div key={idx}>
                                     <CatProf
@@ -282,9 +306,9 @@ export default function Cats() {
                                 // console.log("newcat", newCat)
                                 // Some voodoo going on here im sorry
                                 const newImageLink = saveEditedCat(newCat).then(() => newCat).catch((error) => console.log("Something went wrong: newCat"))
-                            } 
+                            }
                             return cat;
-                        
+
                         }))
                     }} />}
                 </div>

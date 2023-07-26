@@ -16,8 +16,8 @@ export default function About() {
                     <h1 className="text-6xl font-gilroy mb-6">
                         About <span className="text-[#C5996C]">Us</span>
                     </h1>
-                    <p className="xl:text-2xl lg:text-xl">Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br />
-                        Phasellus congue iaculis suscipit. Nulla facilisi.</p>
+                    <p className="xl:text-2xl lg:text-xl">Welcome to Purrsonals, the heartwarming stray <br />
+                    cat adoption page brought to you by PUP Sintang Pusa!</p>
                 </div>
             </div>
 
@@ -48,7 +48,7 @@ export default function About() {
                     <div className="flex justify-center items-center pt-10 space-x-20">
                         <div className="card w-80 shadow-xl">
                             <figure>
-                                <img src="/c2.jpg" alt="Shoes" />
+                            <img className="w-[25rem] h-44 object-none" src="/o1.jpg" />
                             </figure>
                             <div className="card-body">
                                 <h2 className="card-title">Name</h2>
@@ -59,7 +59,7 @@ export default function About() {
 
                         <div className="card w-80 shadow-xl">
                             <figure>
-                                <img src="/c2.jpg" alt="Shoes" />
+                            <img className="w-[25rem] h-44 object-none" src="/o2.jpg" />
                             </figure>
                             <div className="card-body">
                                 <h2 className="card-title">Name</h2>
@@ -69,7 +69,7 @@ export default function About() {
 
                         <div className="card w-80 shadow-xl">
                             <figure>
-                                <img src="/c2.jpg" alt="Shoes" />
+                            <img className="w-[25rem] h-44 object-none" src="/o3.jpg" />
                             </figure>
                             <div className="card-body">
                                 <h2 className="card-title">Name</h2>
@@ -118,32 +118,32 @@ export default function About() {
                         <div className="flex flex-col w-40 border-opacity-50 space-y-5">
                             <div className="grid w-20 h-20 bg-[#FEF3E4] text-[#C5996C] text-2xl font-gilroy rounded-full place-items-center">01</div>
                             <div className="grid h-20">
-                                <h1 className="text-xl font-gilroy pb-2">Title 01</h1>
-                                <p className="text-md w-44">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                <h1 className="text-xl font-gilroy pb-2">Step 01</h1>
+                                <p className="text-md w-44">Rescue stray cats from various situations.</p>
                             </div>
                         </div>
 
                         <div className="flex flex-col w-40 border-opacity-50 space-y-5">
                             <div className="grid w-20 h-20 bg-[#FEF3E4] text-[#C5996C] text-2xl font-gilroy rounded-full place-items-center">02</div>
                             <div className="grid h-20">
-                                <h1 className="text-xl font-gilroy pb-2">Title 02</h1>
-                                <p className="text-md w-44">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                <h1 className="text-xl font-gilroy pb-2">Step 02</h1>
+                                <p className="text-md w-44">Provide nurturing and safe environment for the rescued cats.</p>
                             </div>
                         </div>
 
                         <div className="flex flex-col w-40 border-opacity-50 space-y-5">
                             <div className="grid w-20 h-20 bg-[#FEF3E4] text-[#C5996C] text-2xl font-gilroy rounded-full place-items-center">03</div>
                             <div className="grid h-20">
-                                <h1 className="text-xl font-gilroy pb-2">Title 03</h1>
-                                <p className="text-md w-44">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                <h1 className="text-xl font-gilroy pb-2">Step 03</h1>
+                                <p className="text-md w-44">Conduct thorough health check and veterinary care.</p>
                             </div>
                         </div>
 
                         <div className="flex flex-col w-40 border-opacity-50 space-y-5">
                             <div className="grid w-20 h-20 bg-[#FEF3E4] text-[#C5996C] text-2xl font-gilroy rounded-full place-items-center">04</div>
                             <div className="grid h-20">
-                                <h1 className="text-xl font-gilroy pb-2">Title 04</h1>
-                                <p className="text-md w-44">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                <h1 className="text-xl font-gilroy pb-2">Step 04</h1>
+                                <p className="text-md w-44">Match cats with potential adopters through adoption counselors.</p>
                             </div>
                         </div>
 
@@ -151,7 +151,7 @@ export default function About() {
                             <div className="grid w-20 h-20 bg-[#FEF3E4] text-[#C5996C] text-2xl font-gilroy rounded-full place-items-center">05</div>
                             <div className="grid h-20">
                                 <h1 className="text-xl font-gilroy pb-2">Title 05</h1>
-                                <p className="text-md w-44">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                <p className="text-md w-44">Facilitate smooth transition to forever homes with loving families.</p>
                             </div>
                         </div>
                     </div>

@@ -61,8 +61,8 @@ const AdminNav = () => {
                         <Avatar src={session?.user?.image} alt="avatar" />
                         <div className="flex flex-col text-left text-md text-[#a3a6b7]">
                             <p className="font-gilroy">{adminName}</p>
-                            <p className="font-gilroyLight">Authorization: {session?.user?.role}</p>
-                            <p className="font-gilroyLight">{ status === "authenticated" ? "Authenticated": "Not Authenticated"}</p>
+                            <p className="font-gilroyLight">{session?.user?.role}</p>
+                            {/*<p className="font-gilroyLight">{ status === "authenticated" ? "Authenticated": "Not Authenticated"}</p>*/}
                         </div>
 
                     </Button>

@@ -10,7 +10,7 @@ export default function Index() {
     getCounts()
 
   }, [])
-  
+
 
   async function getCounts() {
     const result = await fetch('/api/counter').then((res) => res.json()).catch((error) => alert(error))
@@ -113,42 +113,42 @@ export default function Index() {
           <div className="flex justify-center items-center pt-10 space-x-10">
             <div className="card w-80 shadow-xl bg-white">
               <figure>
-                <img src="/c2.jpg" alt="Shoes" />
+                <img className="w-[25rem] h-44 object-none" src="/4.png" />
               </figure>
               <div className="card-body">
-                <h2 className="card-title">Name</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <h2 className="card-title">Hiro</h2>
+                <p>Hiro is a rescue kitten. Sweet and playful!</p>
                 <div className="flex space-x-2">
-                  <div className="badge text-[#C5996C] bg-[#FEF3E4] border-none w-40">x months</div>
-                  <div className="badge text-[#86A355] bg-[#E1F7F1] border-none w-40">x kg</div>
+                  <div className="badge text-[#C5996C] bg-[#FEF3E4] border-none w-40">9 months</div>
+                  <div className="badge text-[#86A355] bg-[#E1F7F1] border-none w-40">1.8 kg</div>
                 </div>
               </div>
             </div>
 
             <div className="card w-80 shadow-xl bg-white">
               <figure>
-                <img src="/c2.jpg" alt="Shoes" />
+                <img className="w-[25rem] h-44 object-none" src="/6.png" />
               </figure>
               <div className="card-body">
-                <h2 className="card-title">Name</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <h2 className="card-title">Bummy</h2>
+                <p>Bummy is a really affectionate and curious cat.</p>
                 <div className="flex space-x-2">
-                  <div className="badge text-[#C5996C] bg-[#FEF3E4] border-none w-40">x months</div>
-                  <div className="badge text-[#86A355] bg-[#E1F7F1] border-none w-40">x kg</div>
+                  <div className="badge text-[#C5996C] bg-[#FEF3E4] border-none w-40">7 months</div>
+                  <div className="badge text-[#86A355] bg-[#E1F7F1] border-none w-40">1.9 kg</div>
                 </div>
               </div>
             </div>
 
             <div className="card w-80 shadow-xl bg-white">
               <figure>
-                <img src="/c2.jpg" alt="Shoes" />
+                <img className="w-[25rem] h-44 object-none" src="/2.png" />
               </figure>
               <div className="card-body">
-                <h2 className="card-title">Name</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <h2 className="card-title">Kurmo</h2>
+                <p>Kurmo is an playful and fun-loving companion to have around.</p>
                 <div className="flex space-x-2">
-                  <div className="badge text-[#C5996C] bg-[#FEF3E4] border-none w-40">x months</div>
-                  <div className="badge text-[#86A355] bg-[#E1F7F1] border-none w-40">x kg</div>
+                  <div className="badge text-[#C5996C] bg-[#FEF3E4] border-none w-40">1 year</div>
+                  <div className="badge text-[#86A355] bg-[#E1F7F1] border-none w-40">2.3 kg</div>
                 </div>
               </div>
             </div>
@@ -197,8 +197,8 @@ export default function Index() {
                     <h1 className="font-gilroy text-2xl">1</h1>
                   </div>
                   <div className="flex w-60 h-28 card my-4">
-                    <h1 className="font-gilroy text-xl">Step 2</h1>
-                    <p className="text-lg text-[#78818a]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi faucibus eros</p>
+                    <h1 className="font-gilroy text-xl">Step 1</h1>
+                    <p className="text-lg text-[#78818a]">Visit our cats tab and choose a pet that you want to adopt</p>
                   </div>
                 </div>
 
@@ -208,7 +208,7 @@ export default function Index() {
                   </div>
                   <div className="flex w-60 h-28 card my-4">
                     <h1 className="font-gilroy text-xl">Step 2</h1>
-                    <p className="text-lg text-[#78818a]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi faucibus eros</p>
+                    <p className="text-lg text-[#78818a]">Press the "adopt" button on the cat or go to our adopt tab</p>
                   </div>
                 </div>
               </div>
@@ -222,7 +222,7 @@ export default function Index() {
                   </div>
                   <div className="flex w-60 h-28 card my-4">
                     <h1 className="font-gilroy text-xl">Step 3</h1>
-                    <p className="text-lg text-[#78818a]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi faucibus eros</p>
+                    <p className="text-lg text-[#78818a]">Fill up the form. Complete it everything and click submit!</p>
                   </div>
                 </div>
 
@@ -232,7 +232,7 @@ export default function Index() {
                   </div>
                   <div className="flex w-60 h-28 card my-4">
                     <h1 className="font-gilroy text-xl">Step 4</h1>
-                    <p className="text-lg text-[#78818a]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi faucibus eros</p>
+                    <p className="text-lg text-[#78818a]">Track your application by going to the track status page</p>
                   </div>
                 </div>
               </div>
@@ -258,7 +258,8 @@ export default function Index() {
                 FAQ 1
               </div>
               <div className="collapse-content">
-                <p>hello</p>
+                <p className="font-gilroy">Can I adopt more than 1 cat?</p>
+                <p className="font-gilroyLight">Absolutely! Just submit a separate application.</p>
               </div>
             </div>
 
@@ -269,7 +270,8 @@ export default function Index() {
                 FAQ 2
               </div>
               <div className="collapse-content">
-                <p>hello</p>
+                <p className="font-gilroy">What is my next step after submitting?</p>
+                <p className="font-gilroyLight">You will just have to wait as we will examine your answers thoroughly. You can check the status of your application through the track status page.</p>
               </div>
             </div>
 
@@ -279,7 +281,8 @@ export default function Index() {
                 FAQ 3
               </div>
               <div className="collapse-content">
-                <p>hello</p>
+                <p className="font-gilroy">I can't choose which one to adopt. What should I do?</p>
+                <p className="font-gilroyLight">If you can't decide which cat to adopt, head to our Purrmate page where we will suggest a suitable cat for you based on your answers..</p>
               </div>
             </div>
 
@@ -289,7 +292,8 @@ export default function Index() {
                 FAQ 4
               </div>
               <div className="collapse-content">
-                <p>hello</p>
+              <p className="font-gilroy">Can I donate?</p>
+                <p className="font-gilroyLight">Yes! On your top left screen, you can see the donate button. You can donate using card or gcash.</p>
               </div>
             </div>
           </div>
@@ -299,7 +303,7 @@ export default function Index() {
             <h1 className="text-5xl font-gilroy">Do you have any <br />
               <span className="text-[#C5996C]">questions?</span> We'll try <br />
               to<span className="text-[#C5996C]"> answer</span> them.</h1>
-            <p className="py-6 text-2xl text-[#78818a]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In aliquam lacus non diam vestibulum rutrum. Phasellus consequat, urna vel rutrum condimentum.</p>
+            <p className="py-6 text-2xl text-[#78818a]">Welcome to our FAQ section, where we address the most common questions and concerns our valued visitors and adoptees have.</p>
           </div>
         </div>
       </div>
