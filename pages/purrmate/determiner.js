@@ -22,14 +22,9 @@ const Determiner = (numForUpdate, numForNavigate, numForNavigateChange) => {
 
     let getWantArray = []
     let getTypeArray = []
-    let getPlanArray = []
     let getSuggestionArray = []
     let suggestionList = []
-    let descList = []
-    let imageList = []
     let expectedTreatmentArray = []
-    let expectedDescArray = []
-    let expectedImageArray = []
 
     //Determines treatments based on user choices
     if(trackState===0){
@@ -84,12 +79,6 @@ const Determiner = (numForUpdate, numForNavigate, numForNavigateChange) => {
         suggestionList.push(treeData.need[trackNum.chosen_need].want[trackNum.chosen_want].type[trackNum.chosen_type].suggestion)
         expectedTreatmentArray = new Set(suggestionList)
         console.log(expectedTreatmentArray)
-
-        descList.push(treeData.need[trackNum.chosen_need].want[trackNum.chosen_want].type[trackNum.chosen_type].desc)
-        expectedDescArray = new Set(descList)
-
-        imageList.push(treeData.need[trackNum.chosen_need].want[trackNum.chosen_want].type[trackNum.chosen_type].image)
-        expectedImageArray = new Set(imageList)
     }
     
     //Get question header
@@ -102,7 +91,7 @@ const Determiner = (numForUpdate, numForNavigate, numForNavigateChange) => {
     //List of choices
     const questionArray = [needArrayTitle, wantArrayTitle, typeArrayTitle]     
 
-    let returnedValues = [trackState, trackNum, questionHeaderArray[trackState], questionArray[trackState], expectedTreatmentArray, expectedDescArray, expectedImageArray]
+    let returnedValues = [trackState, trackNum, questionHeaderArray[trackState], questionArray[trackState], expectedTreatmentArray]
 
     return returnedValues
 }

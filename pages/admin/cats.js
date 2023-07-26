@@ -191,7 +191,7 @@ export default function Cats() {
                 <AdminNav />
 
                 <div className="py-12 px-20 w-full">
-                    <h1 className="font-gilroy text-2xl">Cat?? Something</h1>
+                    <h1 className="font-gilroy text-2xl">Cats</h1>
                     <div className="buttons space-x-4 mt-5 flex">
                         <div className="relative mb-4 flex w-full flex-wrap items-stretch">
                             <input
