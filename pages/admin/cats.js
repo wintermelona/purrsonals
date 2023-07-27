@@ -113,10 +113,12 @@ export default function Cats() {
         formData.append("description", description);
         formData.append("image", image);
         // console.log("image", image)
-        const result = await fetch('/api/cats/', {
+        const result = await fetch('/api/cats', {
             method: "POST",
             body: formData
-        }).then((res) => res.json())
+        })
+
+        const out = await result.json()
 
         // console.log("result ", result)
 
@@ -136,7 +138,7 @@ export default function Cats() {
             setImage('');
         }
 
-        alert(result.message)
+        alert(out.message)
     }
 
     const editCatHandler = (cat) => {
