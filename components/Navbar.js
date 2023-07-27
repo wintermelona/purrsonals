@@ -227,9 +227,9 @@ const Navbar = () => {
                             </Link>
 
                             <div className="text-center mt-5">
-                            <span className="font-gilroyLight text-[#4B4B4B]">Don&apos;t have an account? <button className="underline text-[#C5996C]" onClick={() => window.my_modal_2.showModal()}>
-                              Register </button> instead</span>
-                              </div>
+                              <span className="font-gilroyLight text-[#4B4B4B]">Don&apos;t have an account? <button className="underline text-[#C5996C]" onClick={() => window.my_modal_2.showModal()}>
+                                Register </button> instead</span>
+                            </div>
                           </div>
                         </form>
                       </dialog>
@@ -263,8 +263,10 @@ const Navbar = () => {
                                 </button>
                               </Link>
                             </div>
-                            <span className="pt-8 font-gilroyLight">Already have an account? <button className="underline text-[#C5996C]" onClick={() => window.my_modal_1.showModal()}>
-                              Login </button> instead</span>
+                            <div className="text-center mt-5">
+                              <span className="font-gilroyLight text-[#4B4B4B]">Already have an account? <button className="underline text-[#C5996C]" onClick={() => window.my_modal_1.showModal()}>
+                                Login </button> instead</span>
+                            </div>
                           </div>
                         </form>
                       </dialog>
