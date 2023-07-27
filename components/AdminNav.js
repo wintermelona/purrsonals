@@ -13,9 +13,10 @@ const AdminNav = () => {
     const [adminName, setAdminName] = useState("");
 
     const {data: session, status} = useSession() // need to import this hook if the user session is required
+    // console.log(session)
     useEffect(() => {
         setAdminName(session?.user?.name)
-    }, [])
+    }, [session])
     const handleSignOut = async (e) => {
     e.preventDefault()
     await signOut({ callbackUrl: 'http://localhost:3000/' })
@@ -62,7 +63,7 @@ const AdminNav = () => {
                         <div className="flex flex-col text-left text-md text-[#a3a6b7]">
                             <p className="font-gilroy">{adminName}</p>
                             <p className="font-gilroyLight">{session?.user?.role}</p>
-                            {/*<p className="font-gilroyLight">{ status === "authenticated" ? "Authenticated": "Not Authenticated"}</p>*/}
+                            <p className="font-gilroyLight">{ status === "authenticated" ? "Authenticated": "Not Authenticated"}</p>
                         </div>
 
                     </Button>

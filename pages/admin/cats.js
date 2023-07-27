@@ -174,7 +174,7 @@ export default function Cats() {
         }
 
         if (deleteMode) {
-            setCats((cats) => {
+            setSearchedCats((cats) => {
                 return cats.filter((c) => c !== cat);
             });
             setDeleteMode(false);
